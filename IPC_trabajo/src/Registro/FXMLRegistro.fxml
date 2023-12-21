@@ -23,7 +23,6 @@
          <top>
             <Pane prefHeight="68.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
                   <Text fx:id="titulo" fontSmoothingType="LCD" layoutX="613.0" layoutY="48.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro nuevo usuario" textAlignment="RIGHT" wrappingWidth="272.000018119812">
                      <font>
                         <Font name="Gill Sans MT" size="26.0" />
@@ -100,7 +99,7 @@
                                     <Font name="Gill Sans MT" size="18.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="correo_textfield" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="300.0" promptText="usuario@dominio.com" />
+                              <TextField fx:id="correo_textfield" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="300.0" promptText="yourEmail@domain.com" />
                            </children>
                         </VBox>
                         <Label fx:id="correo_err" alignment="CENTER" prefHeight="30.0" prefWidth="899.0" textAlignment="CENTER" textFill="RED" wrapText="true">
@@ -119,7 +118,7 @@
                                     <Font name="Gill Sans MT" size="18.0" />
                                  </font>
                               </Text>
-                              <PasswordField fx:id="contraseña_paswfield" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="300.0" promptText="contraseña123" />
+                              <PasswordField fx:id="contraseña_paswfield" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="300.0" promptText="LettersNumbersSymbols" />
                            </children>
                         </VBox>
                         <Label fx:id="contraseña_err" alignment="CENTER" prefHeight="30.0" prefWidth="899.0" textAlignment="CENTER" textFill="RED" wrapText="true">
@@ -138,7 +137,7 @@
                                     <Font name="Gill Sans MT" size="18.0" />
                                  </font>
                               </Text>
-                              <PasswordField alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="300.0" promptText="contraseña123" />
+                              <PasswordField alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="300.0" promptText="LettersNumbersSymbols" />
                            </children>
                         </VBox>
                         <Label fx:id="confContr_err" alignment="CENTER" prefHeight="30.0" prefWidth="899.0" textAlignment="CENTER" textFill="RED" wrapText="true">

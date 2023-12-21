@@ -22,10 +22,6 @@ import static javafx.scene.input.KeyCode.EQUALS;
 import javafx.scene.text.Text;
 
 
-/**
- *
- * @author svalero
- */
 public class FXMLSignUpController implements Initializable {
 
 
