@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author Elena
  */
 public class FXMLRegistroController implements Initializable {
 
