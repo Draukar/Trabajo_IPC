@@ -25,6 +25,7 @@
             </Text>
          </children>
          <BorderPane.margin>
+
             <Insets />
          </BorderPane.margin>
          <padding>
@@ -100,6 +101,7 @@
                   <VBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="151.0" spacing="40.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="¿Todavía no tienes una cuenta?" />
+
                         <Button fx:id="bRegistro" mnemonicParsing="false" text="¡Regístrate!">
                            <font>
                               <Font name="Gill Sans MT" size="14.0" />
