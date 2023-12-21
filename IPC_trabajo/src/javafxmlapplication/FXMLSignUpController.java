@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inicio;
+package javafxmlapplication;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 
 /**
  *
- * @author svalero
+ * @author Sofia
  */
 public class FXMLSignUpController implements Initializable {
 

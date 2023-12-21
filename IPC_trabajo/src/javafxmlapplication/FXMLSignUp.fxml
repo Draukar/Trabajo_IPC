@@ -63,19 +63,25 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/accept.png" />
+                              <Image url="@/C:/Users/elena/Documents/GitHub/Trabajo_IPC/IPC_trabajo/src/imagenes/accept.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="Gill Sans MT" size="14.0" />
+                     </font>
                   </Button>
                   <Button fx:id="bCancel" minWidth="80.0" mnemonicParsing="false" onAction="#cancelar" prefWidth="100.0" text="Cancelar">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/cancel.png" />
+                              <Image url="@../imagenes/cancel.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="Gill Sans MT" size="14.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>
@@ -94,7 +100,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="151.0" spacing="40.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="¿Todavía no tienes una cuenta?" />
-                        <Button fx:id="bRegistro" mnemonicParsing="false" text="¡Regístrate!" />
+                        <Button fx:id="bRegistro" mnemonicParsing="false" text="¡Regístrate!">
+                           <font>
+                              <Font name="Gill Sans MT" size="14.0" />
+                           </font></Button>
                      </children>
                   </VBox>
                   <Line endX="50.0" layoutX="111.0" layoutY="11.0" startX="-100.0" />
