@@ -1,0 +1,35 @@
+/* Banner Izquierda */
+.login_left{
+    -fx-background-color: #BE3455;
+    -fx-alignment: center;
+}
+
+.login_logo_left{
+    -fx-alignment: center;
+}
+
+.login_left ImageView{
+    -fx-fill: #FFFFFF;
+}
+
+.login_left Text {
+    -fx-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+/* Datos de usuario y contraseña */
+.login_datos {
+    -fx-spacing: 10px;
+    -fx-alignment: center_left;
+}
+.login_datos Label {
+    -fx-font-weight: bold;
+}
+
+.login_datos Button:hover{
+    -fx-cursor: hand;
+}
+
+.error{
+    -fx-text-fill: #FF0000;
+}

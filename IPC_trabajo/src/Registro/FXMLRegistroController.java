@@ -18,46 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
- * FXML Controller class
+ * Resources.FXML Controller class
  *
  * @author Elena
  */
 public class FXMLRegistroController implements Initializable {
-
-    @FXML
-    private Text titulo;
-    @FXML
-    private GridPane grid;
-    @FXML
-    private ImageView fotoPerf;
-    @FXML
-    private Text nombre_usuario;
-    @FXML
-    private TextField nombre_textfield;
-    @FXML
-    private Text nickname;
-    @FXML
-    private TextField nickname_textfield;
-    @FXML
-    private Label nickname_err;
-    @FXML
-    private Text correo;
-    @FXML
-    private TextField correo_textfield;
-    @FXML
-    private Label correo_err;
-    @FXML
-    private Text contrasena;
-    @FXML
-    private PasswordField contraseña_paswfield;
-    @FXML
-    private Label contraseña_err;
-    @FXML
-    private VBox confCont_paswfield;
-    @FXML
-    private Text confCont;
-    @FXML
-    private Label confContr_err;
 
 
     /**
