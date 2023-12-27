@@ -1,0 +1,83 @@
+/* Banner Izquierda */
+.login_left{
+    -fx-background-color: #BE3455;
+    -fx-alignment: center;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.login_logo_left{
+    -fx-alignment: center;
+}
+
+.login_left ImageView{
+    -fx-fill: #FFFFFF;
+}
+
+.login_left Text {
+    -fx-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+/* Datos de usuario y contraseña */
+.login_datos {
+    -fx-spacing: 10px;
+    -fx-alignment: top_left;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.login_datos Label {
+    -fx-font-weight: bold;
+}
+
+.login_datos Button{
+    -fx-background-color: #BE3455;
+}
+
+.login_datos Button:hover{
+    -fx-cursor: hand;
+}
+
+.login_datos_boton_registro{
+    -fx-background-color: transparent;
+    -fx-text-fill: #0000FF;
+    -fx-font-weight: bold;
+}
+
+.error{
+    -fx-text-fill: #FF0000;
+}
+
+/* Menu */
+
+.menu{
+    -fx-background-color: #BE3455;
+    -fx-alignment: center;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.menu_logo{
+
+}
+
+.menu_botones{
+    -fx-spacing: 15;
+    -fx-padding: 10 5 10 5;
+    -fx-font-family: "Gill Sans MT";
+}
+.menu_botones Button{
+    -fx-pref-width: 150;
+    -fx-pref-height: 50;
+    -fx-background-color: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-alignment: center_left;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.menu_botones Button:hover{
+    -fx-cursor: hand;
+}
+
+.menu_botones Label{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
