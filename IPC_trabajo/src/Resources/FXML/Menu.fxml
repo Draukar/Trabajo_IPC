@@ -5,18 +5,33 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="150.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuController">
    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="440.0" prefWidth="150.0" styleClass="menu">
-      <VBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+      <VBox alignment="CENTER" prefHeight="50.0" prefWidth="100.0" styleClass="menu_logo" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../icons/Ahorros.png" />
             </image>
          </ImageView>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre APP" />
+         <HBox alignment="CENTER">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spend">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Text>
+               <Text id="Wise" strokeType="OUTSIDE" strokeWidth="0.0" text="Wise">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Text>
+            </children>
+         </HBox>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="menu_botones" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <Button fx:id="boton_inicio" mnemonicParsing="false" text="Inicio">
