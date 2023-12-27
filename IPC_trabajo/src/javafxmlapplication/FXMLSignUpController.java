@@ -147,7 +147,7 @@ public class FXMLSignUpController implements Initializable {
     }
     
     private void checkEditPassword(){
-        if(!Utils.checkPassword(password.textProperty().getValueSafe()))
+        if(!Utils.checkPassword(password.getText()))
             manageError(lIncorrectPassword,password,validPassword);
         else
             manageCorrect(lIncorrectPassword,password,validPassword);

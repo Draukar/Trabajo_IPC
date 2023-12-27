@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import model.User;
 
 /**
  * FXML Controller class
@@ -66,6 +67,7 @@ public class FXMLRegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        User.checkEmail(email)
         
     }    
     
