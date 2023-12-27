@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="IPC_trabajo">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/IPC_trabajo/acountIPC.jar!/" />
+      <root url="jar://$PROJECT_DIR$/IPC_trabajo/sqlite-jdbc-3.41.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
