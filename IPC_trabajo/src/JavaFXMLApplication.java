@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 
+import Model.Model;
+import Views.MainView;
+import com.sun.tools.javac.Main;
+import com.sun.webkit.Timer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +19,7 @@ public class JavaFXMLApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("/Resources/FXML/Login.fxml"));
-        Scene scene = new Scene(loader.load());
-        stage.setScene(scene);
-        stage.show();
+        Model.getInstance().getMainView().ventanaBase();
     }
 
     /**

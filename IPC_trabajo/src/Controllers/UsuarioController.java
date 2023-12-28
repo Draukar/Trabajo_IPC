@@ -1,4 +1,4 @@
-package Controllers.Usuario;
+package Controllers;
 
 public class UsuarioController {
 }

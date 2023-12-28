@@ -51,4 +51,18 @@
          <Button fx:id="boton_registro" mnemonicParsing="false" styleClass="login_datos_boton_registro" text="¡Regístrate!" />
       </HBox>
    </VBox>
+   <AnchorPane layoutY="291.0" prefHeight="106.0" prefWidth="200.0" styleClass="base_contacto" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0">
+      <children>
+         <Button fx:id="boton_contacto" layoutX="43.0" layoutY="64.0" mnemonicParsing="false" text="¡Contáctanos!">
+            <graphic>
+               <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../icons/contacto.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Label layoutX="38.0" layoutY="35.0" text="¿Necesitas ayuda?" />
+      </children>
+   </AnchorPane>
 </AnchorPane>
