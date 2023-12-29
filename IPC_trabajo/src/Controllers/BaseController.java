@@ -3,9 +3,12 @@ package Controllers;
 import Model.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
 
 public class BaseController implements Initializable {
     public Button boton_iniciar;

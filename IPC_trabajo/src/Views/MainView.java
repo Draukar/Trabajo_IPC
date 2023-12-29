@@ -88,4 +88,9 @@ public class MainView {
         stage.setTitle("SpendWise");
         stage.show();
     }
+    
+    public void ventanaGasto(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Gasto.fxml"));
+        Scene scene = null; 
+    }
 }

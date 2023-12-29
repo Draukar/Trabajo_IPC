@@ -168,3 +168,31 @@ Button:hover{
 .gastos_boton Button:hover{
     -fx-cursor: hand;
 }
+
+
+/*Ventana Contacto*/
+
+    /*Titulo igual que en la ventana gastos*/
+
+    .contacto_forma{
+        -fx-font-weight: bold;
+    }
+
+    
+/*Ventana incio*/
+.encabezado{
+    -fx-font-weight: bold;
+    -fx-font-family: "Gill Sans MT";
+    -fx-font-size: 30;
+    -fx-text-fill: #BE3455;
+}
+
+.encabezado Text{
+    -fx-font-weight: bold;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.borderPane {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
