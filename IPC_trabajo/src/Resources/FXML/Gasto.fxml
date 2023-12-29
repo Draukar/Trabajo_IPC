@@ -3,26 +3,34 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<<<<<<< Updated upstream
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+=======
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+>>>>>>> Stashed changes
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="396.0" prefWidth="350.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
+<<<<<<< Updated upstream
+<AnchorPane prefHeight="446.0" prefWidth="353.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
     <children>
-        <AnchorPane layoutX="-2.0" prefHeight="52.0" prefWidth="350.0" styleClass="titulo" AnchorPane.rightAnchor="0.0">
+        <AnchorPane layoutX="-2.0" prefHeight="52.0" prefWidth="353.0" styleClass="titulo" AnchorPane.rightAnchor="0.0">
             <children>
                 <Text layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Gasto" />
             </children>
         </AnchorPane>
         <AnchorPane layoutY="61.0" styleClass="gastos">
             <children>
-                <VBox prefHeight="277.0" prefWidth="350.0">
+                <VBox prefHeight="339.0" prefWidth="350.0">
                     <children>
                         <Label text="Concepto:">
                             <VBox.margin>
@@ -58,11 +66,45 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </ChoiceBox>
-                  <Label text="Subir foto:">
+                  <Label text="Fecha:">
+=======
+<AnchorPane prefHeight="396.0" prefWidth="350.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
+   <children>
+      <AnchorPane layoutX="-2.0" prefHeight="52.0" prefWidth="350.0">
+         <children>
+            <Text layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Gasto" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="61.0">
+         <children>
+            <VBox prefHeight="277.0" prefWidth="350.0">
+               <children>
+                  <Label text="Concepto:">
+>>>>>>> Stashed changes
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
+<<<<<<< Updated upstream
+                  <DatePicker prefHeight="22.0" prefWidth="100.0" promptText="dd/mm/aaaa">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Label text="Subir foto:">
+=======
+                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="231.0">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Cantidad:">
+>>>>>>> Stashed changes
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+<<<<<<< Updated upstream
                   <Button mnemonicParsing="false">
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -80,7 +122,7 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-                        <TextArea prefHeight="59.0" prefWidth="330.0">
+                        <TextArea prefHeight="58.0" prefWidth="330.0">
                             <VBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </VBox.margin>
@@ -89,7 +131,45 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <Button layoutX="267.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="gastos_boton_anadir" text="Añadir" translateY="1.0" />
-        <Button layoutX="203.0" layoutY="352.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" text="Limpiar" />
+        <Button layoutX="265.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="gastos_boton_anadir" text="Añadir" translateY="1.0" />
+        <Button layoutX="199.0" layoutY="409.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" text="Limpiar" />
     </children>
+=======
+                  <HBox>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField maxWidth="-Infinity" prefHeight="26.0" prefWidth="138.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="€" translateX="5.0" wrappingWidth="19.26873779296875" />
+                     </children>
+                  </HBox>
+                  <Label text="Categoría: ">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ChoiceBox prefHeight="26.0" prefWidth="164.0">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <Label text="Descripción:">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea prefHeight="200.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Button layoutX="267.0" layoutY="351.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="Añadir" />
+      <Button layoutX="202.0" layoutY="352.0" mnemonicParsing="false" text="Limpiar" />
+   </children>
+>>>>>>> Stashed changes
 </AnchorPane>

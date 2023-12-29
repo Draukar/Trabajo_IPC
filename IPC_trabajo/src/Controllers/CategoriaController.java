@@ -1,8 +1,3 @@
-<<<<<<< Updated upstream
-package Controllers;
-
-public class ContactoController {
-=======
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
@@ -18,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author elena
  */
-public class ContactoController implements Initializable {
+public class CategoriaController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -28,5 +23,4 @@ public class ContactoController implements Initializable {
         // TODO
     }    
     
->>>>>>> Stashed changes
 }
