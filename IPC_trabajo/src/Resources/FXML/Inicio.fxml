@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="440.0" prefWidth="673.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" styleClass="encabezado" text="Buenos días, &quot;Nombre&quot;" />
+      <AnchorPane layoutX="31.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="200.0">
+         <children>
+            <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado Text" text="Ingresos y gastos del mes: " />
+            <HBox alignment="BOTTOM_CENTER" layoutY="104.0" prefHeight="35.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="99.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ingresos" />
+                        <Label fx:id="ingresos" text="XX €" />
+                     </children>
+                  </VBox>
+                  <Line endX="-100.0" endY="-29.3687744140625" startX="-100.0" />
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gastos" />
+                        <Label fx:id="gastos" text="XX €" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane fx:id="compIngGas_pane" layoutY="25.0" prefHeight="78.0" prefWidth="200.0" styleClass="borderPane" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="220.0" prefHeight="200.0" prefWidth="426.0">
+         <children>
+            <TableView fx:id="mov_tableview" layoutX="20.0" layoutY="19.0" prefHeight="162.0" prefWidth="611.0">
+              <columns>
+                  <TableColumn prefWidth="34.4000244140625" />
+                <TableColumn prefWidth="117.5999755859375" text="Categoría" />
+                <TableColumn prefWidth="102.39994812011719" text="Fecha" />
+                  <TableColumn prefWidth="98.4000244140625" text="Cantidad (€)" />
+                  <TableColumn prefWidth="152.0" text="Concepto" />
+                  <TableColumn minWidth="0.0" prefWidth="102.39990234375" text="Saldo restante" />
+              </columns>
+            </TableView>
+            <Text layoutX="20.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado Text" text="Últimos movimientos:" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="316.0" layoutY="50.0" prefHeight="140.0" prefWidth="342.0">
+         <children>
+            <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado Text" text="Gastos de este mes:" />
+            <Pane fx:id="gastos_pane" layoutX="1.0" layoutY="31.0" prefHeight="106.0" prefWidth="326.0" styleClass="borderPane" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

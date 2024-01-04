@@ -1,0 +1,170 @@
+/* Banner Izquierda */
+.login_left{
+    -fx-background-color: #BE3455;
+    -fx-alignment: center;
+    -fx-font-family: "Gill Sans MT";
+}
+Button:hover{
+    -fx-cursor: hand;
+}
+.login_logo_left{
+    -fx-alignment: center;
+}
+
+.login_left ImageView{
+    -fx-fill: #FFFFFF;
+}
+
+.login_left Text {
+    -fx-fill: #FFFFFF;
+}
+
+/* Base */
+.base_contacto Label{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Gill Sans MT";
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+.base_contacto Button{
+    -fx-background-color: #D9DDDC;
+    -fx-font-weight: bold;
+}
+
+.base_info{
+    -fx-font-family: "Gill Sans MT";
+    -fx-alignment: center;
+    -fx-font-size: 14;
+    -fx-spacing: 10;
+}
+
+
+.base_info_iniciar{
+    -fx-pref-width: 200;
+    -fx-pref-height: 35;
+    -fx-background-color: #BE3455;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.base_info_reg{
+    -fx-pref-width: 200;
+    -fx-pref-height: 35;
+    -fx-font-weight: bold;
+    -fx-background-color: #D9DDDC;
+}
+.base_info Button:hover{
+    -fx-cursor: hand;
+}
+
+/* Datos de usuario y contraseña */
+.login_datos {
+    -fx-spacing: 10px;
+    -fx-alignment: top_left;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.login_datos Label {
+    -fx-font-weight: bold;
+}
+
+.login_datos Button{
+    -fx-background-color: #BE3455;
+    -fx-text-fill: #FFFFFF;
+}
+
+.login_datos Button:hover{
+    -fx-cursor: hand;
+}
+
+.login_datos_boton_registro{
+    -fx-background-color: transparent;
+    -fx-text-fill: #0000FF;
+    -fx-font-weight: bold;
+}
+
+
+
+.error{
+    -fx-text-fill: #FF0000;
+}
+
+/* Menu */
+
+.menu{
+    -fx-background-color: #BE3455;
+    -fx-alignment: center;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.menu_logo{
+}
+
+.menu_logo Text{
+    -fx-fill: #FFFFFF;
+}
+
+.menu_botones{
+    -fx-spacing: 15;
+    -fx-padding: 10 5 10 5;
+    -fx-font-family: "Gill Sans MT";
+}
+.menu_botones Button{
+    -fx-pref-width: 150;
+    -fx-pref-height: 50;
+    -fx-background-color: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-alignment: center_left;
+    -fx-font-family: "Gill Sans MT";
+}
+
+.menu_botones Button:hover{
+    -fx-cursor: hand;
+}
+
+.menu_botones Label{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+#Wise{
+    -fx-font-weight: bold;
+}
+
+/* Ventana Gasto */
+
+.titulo{
+    -fx-background-color: #BE3455;
+    -fx-font-family: "Gill Sans MT";
+    -fx-font-weight: bold;
+}
+
+.titulo Text{
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 22;
+
+}
+
+.gastos{
+    -fx-font-family: "Gill Sans MT";
+}
+
+.gastos VBox{
+    -fx-spacing: 5;
+}
+
+.gastos_boton_anadir{
+    -fx-background-color: #BE3455;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-text-fill: #FFFFFF;
+}
+
+.gastos_boton_limpiar{
+    -fx-background-color: #D9DDDC;
+    -fx-font-weight: bold;
+}
+
+.gastos_boton Button:hover{
+    -fx-cursor: hand;
+}
