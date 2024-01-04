@@ -5,7 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<<<<<<< Updated upstream
+
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -62,44 +62,4 @@
             </children>
         </AnchorPane>
     </children>
-=======
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
-   <children>
-      <VBox prefHeight="400.0" prefWidth="200.0" styleClass="login_left" AnchorPane.rightAnchor="400.0">
-         <children>
-            <ImageView fitHeight="50.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/Ahorros.png" />
-               </image>
-            </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Aplicación" />
-         </children>
-      </VBox>
-      <AnchorPane layoutY="291.0" prefHeight="106.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="boton_contacto" layoutX="43.0" layoutY="64.0" mnemonicParsing="false" text="¡Contáctanos!">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/contacto.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="43.0" layoutY="28.0" text="¿Necesitas ayuda?" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="222.0" layoutY="47.0" prefHeight="294.0" prefWidth="345.0">
-         <children>
-            <Text layoutX="143.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido" />
-            <Text layoutX="25.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gracias por confiar en SpendWise para registrar y controlar tus gastos. " textAlignment="CENTER" wrappingWidth="294.36761474609375" />
-            <Button layoutX="129.0" layoutY="199.0" mnemonicParsing="false" text="Iniciar sesión " />
-            <Button layoutX="135.0" layoutY="238.0" mnemonicParsing="false" text="Registrarse" />
-         </children>
-      </AnchorPane>
-   </children>
->>>>>>> Stashed changes
 </AnchorPane>
