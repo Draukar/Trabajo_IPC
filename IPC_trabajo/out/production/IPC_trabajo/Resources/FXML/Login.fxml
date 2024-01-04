@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <VBox prefHeight="400.0" prefWidth="200.0" styleClass="login_left" AnchorPane.rightAnchor="400.0">
       <ImageView fitHeight="50.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -44,7 +44,7 @@
       <TextField fx:id="campo_usuario" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" />
       <Label fx:id="contraseña_lbl" text="Contraseña:" />
       <PasswordField fx:id="campo_contraseña" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" />
-      <Button fx:id="boton_login" mnemonicParsing="false" text="Button" />
+      <Button fx:id="boton_login" mnemonicParsing="false" styleClass="gastos_boton_anadir" text="Acceder" />
       <Label fx:id="error_lbl" styleClass="error" text="Error:" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <Label prefHeight="25.0" prefWidth="121.0" text="¿No tienes cuenta?" />

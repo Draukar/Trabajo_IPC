@@ -130,7 +130,9 @@ Button:hover{
 #Wise{
     -fx-font-weight: bold;
 }
-
+#Alerta{
+    -fx-fill: #FF0000;
+}
 /* Ventana Gasto */
 
 .titulo{
