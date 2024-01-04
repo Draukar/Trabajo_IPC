@@ -9,17 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="350.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="Controllers.ContactoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ContactoController">
     <children>
-        <AnchorPane prefHeight="52.0" prefWidth="350.0">
+        <AnchorPane prefHeight="52.0" prefWidth="350.0" styleClass="titulo" stylesheets="@../Style/Styles.css">
             <children>
                 <Text layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contáctanos" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="10.0" layoutY="71.0">
             <children>
-                <VBox prefHeight="301.0" prefWidth="331.0">
+                <VBox prefHeight="301.0" prefWidth="331.0" stylesheets="@../Style/Styles.css">
                     <children>
                         <HBox alignment="CENTER_LEFT">
                             <VBox.margin>
@@ -36,7 +35,7 @@
                                         <Insets left="7.0" />
                                     </padding>
                                 </Label>
-                                <Label text="+ 34 655 438 623 ">
+                                <Label styleClass="contacto_forma" text="+ 34 655 438 623 ">
                                     <padding>
                                         <Insets left="20.0" />
                                     </padding>
@@ -58,7 +57,7 @@
                                         <Insets left="7.0" />
                                     </padding>
                                 </Label>
-                                <Label text="info@spendWise.com">
+                                <Label styleClass="contacto_forma" text="info@spendWise.com">
                                     <padding>
                                         <Insets left="20.0" />
                                     </padding>
@@ -96,7 +95,7 @@
                                             <children>
                                                 <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../icons/Linkedin.png" />
+                                                        <Image url="@../icons/linkedin.png" />
                                                     </image>
                                                     <HBox.margin>
                                                         <Insets left="10.0" />
@@ -107,7 +106,7 @@
                                                         <Insets left="7.0" />
                                                     </padding>
                                                 </Label>
-                                                <Label text="SpendWise">
+                                                <Label styleClass="contacto_forma" text="SpendWise">
                                                     <padding>
                                                         <Insets left="20.0" />
                                                     </padding>
@@ -132,7 +131,7 @@
                                                         <Insets left="7.0" />
                                                     </padding>
                                                 </Label>
-                                                <Label text="Spend_Wise.of">
+                                                <Label styleClass="contacto_forma" text="Spend_Wise.of">
                                                     <padding>
                                                         <Insets left="20.0" />
                                                     </padding>
@@ -157,7 +156,7 @@
                                                         <Insets left="7.0" />
                                                     </padding>
                                                 </Label>
-                                                <Label text="Spend_Wise.of">
+                                                <Label styleClass="contacto_forma" text="Spend_Wise.of">
                                                     <padding>
                                                         <Insets left="20.0" />
                                                     </padding>
