@@ -131,7 +131,7 @@ Button:hover{
     -fx-font-weight: bold;
 }
 #Alerta{
-    -fx-fill: #FF0000;
+    -fx-text-fill: #FF0000;
 }
 /* Ventana Gasto */
 
