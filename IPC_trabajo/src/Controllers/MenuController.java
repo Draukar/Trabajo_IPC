@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.stage.Stage;
 
 public class MenuController implements Initializable {
     public Button boton_inicio;
@@ -41,11 +42,11 @@ public class MenuController implements Initializable {
     private void perfil(){
         Model.getInstance().getMainView().getMenuSeleccionado().set("Perfil");
     }
-
     public void logout(){
         Stage stage = (Stage) boton_inicio.getScene().getWindow();
         Model.getInstance().getMainView().cerrarStage(stage);
         Model.getInstance().getMainView().ventanaBase();
 
     }
+
 }

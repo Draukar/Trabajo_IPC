@@ -13,11 +13,21 @@ public class UsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getMainView().getMenuSeleccionado().addListener(((observableValue, viejoValor, nuevoValor) -> {
-            switch (nuevoValor){
-                case "Historial" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaHistorial());
-                case "Perfil" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
-                case "Logout" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
-                default -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaInicio());
+            switch (nuevoValor) {
+                case "Historial":
+                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaHistorial());
+                    break;      
+                case "Añadir":
+                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaAnadir());
+                    break;
+                case "Perfil":
+                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
+                    break;
+                case "Logout": 
+                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
+                default:
+                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaInicio());
+                    break;
             }
         }));
     }
