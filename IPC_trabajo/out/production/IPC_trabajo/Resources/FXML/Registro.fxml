@@ -88,7 +88,7 @@
                 </HBox>
                 <AnchorPane prefHeight="14.0" prefWidth="340.0">
                     <children>
-                        <Button fx:id="boton_aceptar" layoutX="290.0" mnemonicParsing="false" onAction="#Acceder" text="Aceptar" />
+                        <Button fx:id="boton_aceptar" layoutX="290.0" mnemonicParsing="false" onAction="#Acceder" styleClass="gastos_boton_anadir" stylesheets="@../Style/Styles.css" text="Aceptar" />
                     </children>
                 </AnchorPane>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
