@@ -17,8 +17,22 @@ public class BaseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boton_iniciar.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaLogin());
-        boton_reg.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaRegistro());
+        boton_iniciar.setOnAction(actionEvent -> login());
+        boton_reg.setOnAction(actionEvent -> registro());
         boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
+    }
+
+    public void login(){
+        Stage stage = (Stage) boton_iniciar.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaLogin();
+
+    }
+
+    public void registro(){
+        Stage stage = (Stage) boton_reg.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaRegistro();
+
     }
 }
