@@ -15,10 +15,11 @@ public class UsuarioController implements Initializable {
         Model.getInstance().getMainView().getMenuSeleccionado().addListener(((observableValue, viejoValor, nuevoValor) -> {
             switch (nuevoValor){
                 case "Historial" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaHistorial());
-                case "Añadir" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaAnadir());
                 case "Perfil" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
+                case "Logout" -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
                 default -> usuario_parent.setCenter(Model.getInstance().getMainView().getVistaInicio());
             }
         }));
     }
+
 }

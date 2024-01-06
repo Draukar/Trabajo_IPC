@@ -3,15 +3,16 @@ package Views;
 import Controllers.UsuarioController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainView {
     private AnchorPane vistaInicio;
     private AnchorPane vistaHistorial;
-    private AnchorPane vistaAnadir;
     private AnchorPane vistaPerfil;
     private final StringProperty menuSeleccionado;
 
@@ -21,77 +22,32 @@ public class MainView {
 
     public void ventanaBase(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Base.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("SpendWise");
-        stage.show();
+        crearStage(loader, "SpendWise");
     }
 
     public void ventanaLogin(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Login.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("SpendWise");
-        stage.show();
+        crearStage(loader, "SpendWise");
     }
     public void ventanaRegistro(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Registro.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("SpendWise");
-        stage.show();
+        crearStage(loader, "SpendWise");
     }
 
     public void ventanaInicio(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Usuario.fxml"));
         UsuarioController usuarioController = new UsuarioController();
         loader.setController(usuarioController);
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("SpendWise");
-        stage.show();
+        crearStage(loader, "SpendWise");
     }
     public void ventanaContacto(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Contacto.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(loader.load());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("SpendWise");
-        stage.show();
+        crearStage(loader, "Contacto");
     }
     
     public void ventanaGasto(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Gasto.fxml"));
-        Scene scene = null; 
+        crearStage(loader, "Añadir Gasto");
     }
 
     // métodos Menú Aplicación
@@ -118,17 +74,6 @@ public class MainView {
         return vistaHistorial;
     }
 
-    public AnchorPane getVistaAnadir(){
-        if(vistaAnadir == null){
-            try {
-                vistaAnadir = new FXMLLoader(getClass().getResource("/Resources/FXML/Gasto.fxml")).load();
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        return vistaAnadir;
-    }
-
     public AnchorPane getVistaPerfil(){
         if(vistaPerfil == null){
             try {
@@ -140,6 +85,20 @@ public class MainView {
         return vistaPerfil;
     }
 
+    public void crearStage(FXMLLoader loader, String titulo){
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(titulo);
+        stage.show();
+        stage.getIcons().add(new Image("Resources/icons/Ahorros.png"));
+        stage.setResizable(false);
+    }
     public void cerrarStage(Stage stage){
         stage.close();
     }
