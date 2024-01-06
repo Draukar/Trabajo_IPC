@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="440.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PerfilController">
+<AnchorPane prefHeight="440.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PerfilController">
    <children>
       <Label layoutX="24.0" layoutY="14.0" styleClass="encabezado" stylesheets="@../Style/Styles.css" text="Editar perfil" />
       <VBox layoutX="51.0" layoutY="63.0" prefHeight="363.0" prefWidth="404.0" styleClass="login_datos" stylesheets="@../Style/Styles.css">
@@ -73,7 +72,7 @@
       </AnchorPane>
       <AnchorPane layoutX="215.0" layoutY="400.0" prefHeight="14.0" prefWidth="340.0">
          <children>
-            <Button fx:id="boton_aceptar" layoutX="290.0" mnemonicParsing="false" onAction="#Acceder" styleClass="gastos_boton_anadir" stylesheets="@../Style/Styles.css" text="Guardar cambios" />
+            <Button fx:id="boton_aceptar" layoutX="290.0" mnemonicParsing="false" styleClass="gastos_boton_anadir" stylesheets="@../Style/Styles.css" text="Guardar cambios" />
             <Button layoutX="154.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" stylesheets="@../Style/Styles.css" text="Cancelar cambios" />
          </children>
       </AnchorPane>

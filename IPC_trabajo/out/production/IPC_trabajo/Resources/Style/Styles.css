@@ -165,6 +165,7 @@ Button:hover{
 .gastos_boton_limpiar{
     -fx-background-color: #D9DDDC;
     -fx-font-weight: bold;
+    -fx-text-fill: #000000;
 }
 
 .gastos_boton Button:hover{
@@ -197,4 +198,9 @@ Button:hover{
 .borderPane {
     -fx-border-color: black;
     -fx-border-width: 1px;
+}
+
+
+#noNegrita{
+    -fx-font-weight: normal;
 }
