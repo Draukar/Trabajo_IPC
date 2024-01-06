@@ -28,7 +28,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boton_login.setOnAction(actionEvent -> loggear());
         boton_registro.setOnAction(actionEvent -> registro());
         boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
         
@@ -70,6 +69,13 @@ public class LoginController implements Initializable {
         Model.getInstance().getMainView().ventanaRegistro();
 
     }
+    
+    public void inicio(){
+        Stage stage = (Stage) boton_login.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaInicio();
+
+    }
 
 
     @FXML
@@ -80,7 +86,7 @@ public class LoginController implements Initializable {
 
         if (Acount.getInstance().logInUserByCredentials(usuario, password)){
             error_lbl.visibleProperty().set(false);
-            boton_login.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaInicio());
+            boton_login.setOnAction(actionEvent -> inicio());
         }else{
             error_lbl.visibleProperty().set(true);
             campo_usuario.setText("");
