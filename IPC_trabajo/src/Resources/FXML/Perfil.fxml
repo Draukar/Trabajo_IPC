@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+
 <AnchorPane prefHeight="440.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PerfilController">
    <children>
       <Label layoutX="24.0" layoutY="14.0" styleClass="encabezado" stylesheets="@../Style/Styles.css" text="Editar perfil" />
@@ -25,12 +26,15 @@
                   <Label id="Alerta" fx:id="errorlbl_correo" text="Correo incorrecto" visible="false" />
                </children>
             </HBox>
-            <Label id="usuario_lbl" text="Usuario:">
+            <HBox>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-            </Label>
-            <Label stylesheets="@../Style/Styles.css" text="Poner aquí el nombre del usuario" />
+               <children>
+                  <Label id="usuario_lbl" text="Usuario:" />
+               </children>
+            </HBox>
+            <TextField fx:id="campo_usuario" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="218.0" />
             <Label id="contraseña_lbl" text="Nueva contraseña:" />
             <HBox>
                <children>
@@ -46,7 +50,7 @@
             <HBox>
                <children>
                   <PasswordField id="campo_contraseña" fx:id="campo_rep_contraseña" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" promptText="LetrasNúmerosSímbolos" />
-                  <Label id="Alerta" fx:id="errorlbl_rep_contraseña" text="Contraseña no coincide" visible="false">
+                  <Label id="Alerta" fx:id="errorlbl_rep_contraseña" text="Las contraseña no coinciden" visible="false">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -54,14 +58,14 @@
                </children>
             </HBox>
             <Label text="Fecha de registro: " />
-            <Label id="noNegrita" stylesheets="@../Style/Styles.css" text="Poner aquí la fecha de registro del usuario" />
+            <Label id="noNegrita" fx:id="fecha_registro" stylesheets="@../Style/Styles.css" text="Poner aquí la fecha de registro del usuario" />
          </children>
       </VBox>
       <AnchorPane layoutX="355.0" layoutY="128.0" prefHeight="118.0" prefWidth="130.0">
          <children>
-            <Button fx:id="avatar" layoutX="24.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0">
+            <Button layoutX="24.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0">
                <graphic>
-                  <ImageView fitHeight="179.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="avatar" fitHeight="179.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/perfil.png" />
                      </image>
