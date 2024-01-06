@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistroController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistroController">
     <children>
         <VBox prefHeight="400.0" prefWidth="200.0" styleClass="login_left" AnchorPane.rightAnchor="400.0">
             <children>
@@ -103,7 +103,7 @@
             <children>
                 <Button fx:id="avatar" layoutX="24.0" mnemonicParsing="false">
                     <graphic>
-                        <ImageView fitHeight="79.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="perfil" fitHeight="79.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../icons/perfil.png" />
                             </image>
