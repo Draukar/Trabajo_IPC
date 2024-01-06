@@ -48,11 +48,10 @@ public class RegistroController implements Initializable {
     private PasswordField campo_rep_contraseña;
     
     //propiedades para controlar si el valor de los campos es válido
-    private BooleanProperty validNombre;
-    private BooleanProperty validCorreo;
-    private BooleanProperty validUsuario;
-    private BooleanProperty validContraseña;
-    private BooleanProperty equalContraseñas;  
+    private BooleanProperty validCorreo = new SimpleBooleanProperty();
+    private BooleanProperty validUsuario = new SimpleBooleanProperty();
+    private BooleanProperty validContraseña = new SimpleBooleanProperty();
+    private BooleanProperty equalContraseñas = new SimpleBooleanProperty();  
     @FXML
     private Label errorlbl_correo;
     @FXML
@@ -74,11 +73,6 @@ public class RegistroController implements Initializable {
         avatar.setOnAction(e -> selectAvatar());
         
         //inicializo las boolean properties
-        validCorreo = new SimpleBooleanProperty();
-        validUsuario = new SimpleBooleanProperty();
-        validContraseña = new SimpleBooleanProperty();   
-        equalContraseñas = new SimpleBooleanProperty();
-        
         validCorreo.setValue(Boolean.FALSE);
         validUsuario.setValue(Boolean.FALSE);
         validContraseña.setValue(Boolean.FALSE);   
@@ -124,54 +118,18 @@ public class RegistroController implements Initializable {
 
     }
     //Funciones para comprobar si los campos son correctos
-    
-    //Funciones complementarias
-    
-    /*
-    Función para cuando el campo es correcto. 
-        Actualiza la boolean property y esconde el mensaje de error
-    Los parámetros son:
-        errorLabel el texto de alerta en caso de error
-        textField el campo sobre el cual se ha hecho la comprobación
-        boolProp la boolean property correspondiente
-        
-    */
-    private void manageCorrect(Label errorLabel,TextField textField, BooleanProperty boolProp ){
-        boolProp.setValue(Boolean.TRUE);
-        hideErrorMessage(errorLabel,textField);
-        
-    }
-    
-    /*
-    Función para cuando el campo es incorrecto
-        Actualiza la boolean property. Muestra el mensaje de error. Devuelve el focus al campo para su corrección
-    */
-    private void manageError(Label errorLabel,TextField textField, BooleanProperty boolProp ){
-        boolProp.setValue(Boolean.FALSE);
-        showErrorMessage(errorLabel,textField);
-        textField.requestFocus();
- 
-    }
-    
-    //Funciones para mostrar o no los mensajes de error
-    private void showErrorMessage(Label errorLabel,TextField textField)
-    {
-        errorLabel.visibleProperty().set(true);
-        textField.styleProperty().setValue("-fx-background-color: #FCE5E0");    
-    }
-    
-    private void hideErrorMessage(Label errorLabel,TextField textField)
-    {
-        errorLabel.visibleProperty().set(false);
-        textField.styleProperty().setValue("");
-    }
-    
-    //Comprobaciones sobre los campos
+
     private void comprobarEmail(){
-        if(!Utils.checkEmail(campo_correo.textProperty().getValueSafe()))
-            manageError(errorlbl_correo,campo_correo,validCorreo);
-        else
-            manageCorrect(errorlbl_correo,campo_correo,validCorreo);
+        if(!Utils.checkEmail(campo_correo.textProperty().getValueSafe())){
+            validCorreo.setValue(Boolean.FALSE);
+            errorlbl_correo.visibleProperty().set(true);
+            campo_correo.styleProperty().setValue("-fx-background-color: #FCE5E0");
+            campo_correo.requestFocus();
+        }else{
+            validCorreo.setValue(Boolean.TRUE);
+            errorlbl_correo.visibleProperty().set(false);
+            campo_correo.styleProperty().setValue("");
+        }
             
     }
     /*
@@ -198,26 +156,41 @@ public class RegistroController implements Initializable {
             errorlbl_usuario.visibleProperty().set(true);
             campo_usuario.requestFocus();
         } else
-            manageCorrect(errorlbl_usuario,campo_usuario,validUsuario);        
+            validUsuario.setValue(Boolean.TRUE);
+            errorlbl_usuario.visibleProperty().set(false);
+            campo_usuario.styleProperty().setValue("");        
     }
     
     private void comprobarContraseña(){
-        if(!Utils.checkPassword(campo_contraseña.textProperty().getValueSafe()))
-            manageError(errorlbl_contraseña,campo_contraseña,validContraseña);
-        else
-            manageCorrect(errorlbl_contraseña,campo_contraseña,validContraseña);
+        if(!Utils.checkPassword(campo_contraseña.textProperty().getValueSafe())){
+            validContraseña.setValue(Boolean.FALSE);
+            errorlbl_contraseña.visibleProperty().set(true);
+            campo_contraseña.styleProperty().setValue("-fx-background-color: #FCE5E0");
+            campo_contraseña.requestFocus();
+        }else{
+            validContraseña.setValue(Boolean.TRUE);
+            errorlbl_contraseña.visibleProperty().set(false);
+            campo_contraseña.styleProperty().setValue("");
+        }
+
     }
     
     private void comprobarIguales(){
         if(campo_contraseña.textProperty().getValueSafe().compareTo(
            campo_rep_contraseña.textProperty().getValueSafe()) != 0){
-            showErrorMessage(errorlbl_rep_contraseña,campo_rep_contraseña);
+            campo_rep_contraseña.styleProperty().setValue("-fx-background-color: #FCE5E0");
+            campo_contraseña.styleProperty().setValue("-fx-background-color: #FCE5E0");
+            campo_rep_contraseña.requestFocus();
+            errorlbl_rep_contraseña.visibleProperty().set(true);
             equalContraseñas.setValue(Boolean.FALSE);
             campo_rep_contraseña.textProperty().setValue("");
             campo_contraseña.textProperty().setValue("");
             campo_contraseña.requestFocus();
         }else{
-            manageCorrect(errorlbl_rep_contraseña, campo_rep_contraseña, equalContraseñas);
+            equalContraseñas.setValue(Boolean.TRUE);
+            errorlbl_rep_contraseña.visibleProperty().set(false);
+            campo_contraseña.styleProperty().setValue("");
+            campo_rep_contraseña.styleProperty().setValue("");
         }
     }
     
