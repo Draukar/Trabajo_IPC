@@ -3,6 +3,7 @@ package Controllers;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import Model.Model;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,12 +20,14 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addListeners();
+        boton_logout.setOnAction(actionEvent -> logout());
+        boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
+        boton_anadir.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaGasto());
     }
 
     private void addListeners(){
         boton_inicio.setOnAction(event -> inicio());
         boton_historial.setOnAction(event -> historial());
-        boton_anadir.setOnAction(event -> anadir());
         boton_perfil.setOnAction(event -> perfil());
     }
 
@@ -36,13 +39,14 @@ public class MenuController implements Initializable {
         Model.getInstance().getMainView().getMenuSeleccionado().set("Historial");
     }
 
-    private void anadir(){
-        Model.getInstance().getMainView().getMenuSeleccionado().set("Añadir");
-    }
-
     private void perfil(){
         Model.getInstance().getMainView().getMenuSeleccionado().set("Perfil");
     }
-    
-    
+    public void logout(){
+        Stage stage = (Stage) boton_inicio.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaBase();
+
+    }
+
 }
