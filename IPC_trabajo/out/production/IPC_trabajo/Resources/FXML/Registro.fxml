@@ -40,14 +40,9 @@
         <VBox layoutX="180.0" layoutY="100.0" prefHeight="300.0" prefWidth="340.0" styleClass="login_datos" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
             <children>
                 <Label text="Nombre:" />
-                <TextField fx:id="campo_nombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="218.0" />
+                <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="218.0" />
                 <Label text="Correo electrónico:" />
-            <HBox spacing="5.0">
-               <children>
-                      <TextField fx:id="campo_correo" maxWidth="-Infinity" prefWidth="223.0" promptText="tuCorreo@dominio.com" />
-                  <Label id="Alerta" fx:id="errorlbl_correo" text="Correo incorrecto" visible="false" />
-               </children>
-            </HBox>
+                <TextField maxWidth="-Infinity" prefWidth="223.0" />
 
                 <Label id="usuario_lbl" text="Usuario:">
                     <VBox.margin>
@@ -56,8 +51,8 @@
                 </Label>
                 <HBox>
                     <children>
-                        <TextField id="campo_usuario" fx:id="campo_usuario" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" />
-                        <Label id="Alerta" fx:id="errorlbl_usuario" text="No espacios / Se repite" visible="false">
+                        <TextField id="campo_usuario" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" />
+                        <Label text="No espacios / Se repite">
                             <padding>
                                 <Insets left="5.0" />
                             </padding>
@@ -67,8 +62,8 @@
                 <Label id="contraseña_lbl" text="Contraseña:" />
                 <HBox>
                     <children>
-                        <PasswordField id="campo_contraseña" fx:id="campo_contraseña" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" promptText="LetrasNúmerosSímbolos" />
-                        <Label id="Alerta" fx:id="errorlbl_contraseña" text="+6 núm y letras" visible="false">
+                        <PasswordField id="campo_contraseña" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" />
+                        <Label text="+6 núm y letras">
                             <padding>
                                 <Insets left="5.0" />
                             </padding>
@@ -78,8 +73,8 @@
                 <Label text="Confirmar Contraseña:" />
                 <HBox>
                     <children>
-                        <PasswordField id="campo_contraseña" fx:id="campo_rep_contraseña" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" promptText="LetrasNúmerosSímbolos" />
-                        <Label id="Alerta" fx:id="errorlbl_rep_contraseña" text="Contraseña no coincide" visible="false">
+                        <PasswordField id="campo_contraseña" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0" />
+                        <Label text="Contraseña no coincide">
                             <padding>
                                 <Insets left="5.0" />
                             </padding>
@@ -88,7 +83,7 @@
                 </HBox>
                 <AnchorPane prefHeight="14.0" prefWidth="340.0">
                     <children>
-                        <Button fx:id="boton_aceptar" layoutX="290.0" mnemonicParsing="false" onAction="#Acceder" text="Aceptar" />
+                        <Button layoutX="290.0" mnemonicParsing="false" text="Aceptar" />
                     </children>
                 </AnchorPane>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -101,7 +96,7 @@
         </VBox>
         <AnchorPane layoutX="457.0" layoutY="16.0" prefHeight="87.0" prefWidth="110.0">
             <children>
-                <Button fx:id="avatar" layoutX="24.0" mnemonicParsing="false">
+                <Button layoutX="24.0" mnemonicParsing="false">
                     <graphic>
                         <ImageView fitHeight="79.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                             <image>
