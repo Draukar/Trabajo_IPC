@@ -9,7 +9,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml">
     <left>
-        <fx:include source="Menu.fxml"/>
+        <fx:include source="./Menu.fxml"/>
     </left>
 
     <center>
