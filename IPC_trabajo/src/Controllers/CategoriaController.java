@@ -101,5 +101,8 @@ public class CategoriaController implements Initializable {
 
     @FXML
     private void limpiar(ActionEvent event) {
+        campo_nombre.setText("");
+        campo_descripcion.setText("");
+        campo_nombre.requestFocus();
     }
 }

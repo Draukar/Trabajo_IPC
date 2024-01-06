@@ -243,12 +243,8 @@ public class RegistroController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION, "Usuario creado correctamente");
             alert.setHeaderText(null);
             alert.setOnHidden(evento -> Model.getInstance().getMainView().ventanaLogin());           
-            alert.showAndWait();
-            
+            alert.showAndWait();            
         }
-        
-        
-
     }
 
     private final Image defaultImage = new Image("Resources/icons/perfil.png");

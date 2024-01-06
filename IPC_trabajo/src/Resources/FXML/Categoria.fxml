@@ -57,7 +57,7 @@
                   </TextArea>
                   <HBox id="Alerra" alignment="CENTER" prefHeight="29.0" prefWidth="350.0">
                      <children>
-                        <Label id="Alerta" fx:id="lbl_error" text="Esta categoria ya existe" />
+                        <Label id="Alerta" fx:id="lbl_error" text="Esta categoria ya existe" visible="false" />
                      </children>
                   </HBox>
                </children>
