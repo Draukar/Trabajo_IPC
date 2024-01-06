@@ -6,6 +6,7 @@ import Model.Model;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.stage.Stage;
 
 public class MenuController implements Initializable {
     public Button boton_inicio;
@@ -42,4 +43,6 @@ public class MenuController implements Initializable {
     private void perfil(){
         Model.getInstance().getMainView().getMenuSeleccionado().set("Perfil");
     }
+    
+    
 }
