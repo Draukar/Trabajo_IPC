@@ -70,7 +70,7 @@ public class RegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boton_login.setOnAction(actionEvent -> login());
         boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
-        avatar.setOnAction(e -> selectAvatar());
+        avatar.setOnAction(e -> selectedAvatar());
         
         //inicializo las boolean properties
         validCorreo.setValue(Boolean.FALSE);
@@ -193,36 +193,10 @@ public class RegistroController implements Initializable {
             campo_rep_contraseña.styleProperty().setValue("");
         }
     }
-    
-    @FXML
-    private void Acceder(ActionEvent event) throws AcountDAOException, IOException {
 
-        String partes_nombre[] = campo_nombre.getText().split(" ");
-        String nombre = partes_nombre[0];
-        String apellidos = null;
-        for(int i = 1; i < partes_nombre.length; i++){
-            apellidos += (" " + partes_nombre[i]);
-        }
-        String correo = campo_correo.getText();
-        String usuario = campo_usuario.getText();
-        String contraseña = campo_contraseña.getText();
+    private Image fotoPerfil = new Image("Resources/icons/perfil.png");
 
-        Image avatar = null;
-        
-        LocalDate fecha_registro = LocalDate.now();
-        
-        boolean res = Acount.getInstance().registerUser(nombre, apellidos, correo,usuario, contraseña, avatar, fecha_registro);
-        if(res){
-            Alert alert = new Alert(AlertType.INFORMATION, "Usuario creado correctamente");
-            alert.setHeaderText(null);
-            alert.setOnHidden(evento -> Model.getInstance().getMainView().ventanaLogin());           
-            alert.showAndWait();            
-        }
-    }
-
-    private final Image defaultImage = new Image("Resources/icons/perfil.png");
-
-    private void selectAvatar() {
+    private void selectedAvatar() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccione una imagen de perfil");
         fileChooser.getExtensionFilters().addAll(
@@ -239,5 +213,42 @@ public class RegistroController implements Initializable {
             perfil.setImage(fotoPerfil);
         }
     }
+
+    private Image getSelectedAvatar(){
+        return fotoPerfil;
+    }
+
+    @FXML
+    private void Acceder(ActionEvent event) throws AcountDAOException, IOException {
+
+        String partes_nombre[] = campo_nombre.getText().split(" ");
+        String nombre = partes_nombre[0];
+        StringBuilder apellidos = new StringBuilder();
+        for(int i = 1; i < partes_nombre.length; i++){
+            apellidos.append(partes_nombre[i]);
+        }
+        String correo = campo_correo.getText();
+        String usuario = campo_usuario.getText();
+        String contraseña = campo_contraseña.getText();
+
+        Image avatar = getSelectedAvatar();
+        
+        LocalDate fecha_registro = LocalDate.now();
+        
+        boolean res = Acount.getInstance().registerUser(nombre, apellidos.toString(), correo,usuario, contraseña, avatar, fecha_registro);
+        if(res){
+            Alert alert = new Alert(AlertType.INFORMATION, "Usuario creado correctamente");
+            alert.setHeaderText(null);
+            alert.setOnHidden(actionEvent -> crear());
+            alert.showAndWait();
+        }
+
+    public void crear(){
+        Stage stage = (Stage) boton_login.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaLogin();
+
+    }
+
 
 }

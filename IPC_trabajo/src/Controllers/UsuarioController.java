@@ -23,10 +23,13 @@ public class UsuarioController implements Initializable {
                 case "Perfil":
                     usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
                     break;
+                case "Logout": 
+                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
                 default:
                     usuario_parent.setCenter(Model.getInstance().getMainView().getVistaInicio());
                     break;
             }
         }));
     }
+
 }
