@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="316.0" prefWidth="350.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
+<AnchorPane prefHeight="316.0" prefWidth="350.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CategoriaController">
    <children>
       <AnchorPane layoutX="-2.0" prefHeight="52.0" prefWidth="350.0" styleClass="titulo" AnchorPane.rightAnchor="0.0">
          <children>
@@ -27,7 +27,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="231.0">
+                  <TextField fx:id="campo_nombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="231.0">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
@@ -50,16 +50,21 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea prefHeight="59.0" prefWidth="330.0">
+                  <TextArea fx:id="campo_descripcion" prefHeight="59.0" prefWidth="330.0">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextArea>
+                  <HBox id="Alerra" alignment="CENTER" prefHeight="29.0" prefWidth="350.0">
+                     <children>
+                        <Label id="Alerta" fx:id="lbl_error" text="Esta categoria ya existe" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <Button layoutX="270.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="gastos_boton_anadir" text="Añadir" translateY="1.0" />
-      <Button layoutX="194.0" layoutY="277.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" text="Limpiar" />
+      <Button fx:id="boton_anadir" layoutX="270.0" layoutY="276.0" mnemonicParsing="false" onAction="#anadir" prefHeight="25.0" prefWidth="65.0" styleClass="gastos_boton_anadir" text="Añadir" translateY="1.0" />
+      <Button fx:id="boton_limpiar" layoutX="194.0" layoutY="277.0" mnemonicParsing="false" onAction="#limpiar" styleClass="gastos_boton_limpiar" text="Limpiar" />
    </children>
 </AnchorPane>
