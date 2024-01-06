@@ -18,16 +18,30 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boton_anadir.setOnAction(actionEvent -> anadir());
-        //boton_historial.setOnAction(actionEvent -> historial());
-        //boton_perfil.setOnAction(actionEvent -> registro());
-        boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
+        addListeners();
     }
-    
-    public void anadir(){
-        Stage stage = (Stage) boton_anadir.getScene().getWindow();
-        Model.getInstance().getMainView().ventanaGasto();
-        stage.showAndWait();
+
+    private void addListeners(){
+        boton_inicio.setOnAction(event -> inicio());
+        boton_historial.setOnAction(event -> historial());
+        boton_anadir.setOnAction(event -> anadir());
+        boton_perfil.setOnAction(event -> perfil());
+    }
+
+    private void inicio(){
+        Model.getInstance().getMainView().getMenuSeleccionado().set("Inicio");
+    }
+
+    private void historial(){
+        Model.getInstance().getMainView().getMenuSeleccionado().set("Historial");
+    }
+
+    private void anadir(){
+        Model.getInstance().getMainView().getMenuSeleccionado().set("Añadir");
+    }
+
+    private void perfil(){
+        Model.getInstance().getMainView().getMenuSeleccionado().set("Perfil");
     }
     
     
