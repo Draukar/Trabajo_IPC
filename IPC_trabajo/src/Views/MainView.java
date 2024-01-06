@@ -93,4 +93,8 @@ public class MainView {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Gasto.fxml"));
         Scene scene = null; 
     }
+
+    public void cerrarStage(Stage stage){
+        stage.close();
+    }
 }

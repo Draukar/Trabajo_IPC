@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -27,8 +28,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //boton_login.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaInicio());
-        boton_registro.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaRegistro());
+        boton_login.setOnAction(actionEvent -> loggear());
+        boton_registro.setOnAction(actionEvent -> registro());
         boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
         
         //boton_login deshabilitado hasta que haya texto tanto en campo_usuario como en campo_contraseña
@@ -57,6 +58,20 @@ public class LoginController implements Initializable {
                           borrar el contenido de los campos
                           situar al usuario en el campo_usuario 
         */
+    public void loggear(){
+        Stage stage = (Stage) boton_login.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaInicio();
+
+    }
+    public void registro(){
+        Stage stage = (Stage) boton_login.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaRegistro();
+
+    }
+
+
     @FXML
     private void acceder(ActionEvent event) throws AcountDAOException, IOException {
         String usuario = campo_usuario.getText();

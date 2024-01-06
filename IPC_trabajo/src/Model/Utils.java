@@ -50,7 +50,7 @@ public class Utils {
             return false; 
         } 
         // Regex to check valid password. 
-        String regex =  "^[A-Za-z0-9]{8,15}$"; 
+        String regex =  "^[A-Za-z0-9]{7,15}$";
   
         // Compile the ReGex 
         Pattern pattern = Pattern.compile(regex); 

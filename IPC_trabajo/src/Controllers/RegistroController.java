@@ -23,6 +23,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -64,7 +65,7 @@ public class RegistroController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boton_login.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaLogin());
+        boton_login.setOnAction(actionEvent -> login());
         boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());             
         
         
@@ -113,7 +114,12 @@ public class RegistroController implements Initializable {
         //boton_aceptar deshabilitado hasta que haya texto en todos los campos
          
     }
-    
+    public void login(){
+        Stage stage = (Stage) boton_login.getScene().getWindow();
+        Model.getInstance().getMainView().cerrarStage(stage);
+        Model.getInstance().getMainView().ventanaLogin();
+
+    }
     //Funciones para comprobar si los campos son correctos
     
     //Funciones complementarias
