@@ -2,14 +2,16 @@ package Controllers;
 
 import Model.Model;
 import Model.Utils;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+
+import java.io.File;
 import java.io.IOException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +21,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
@@ -30,6 +33,7 @@ import model.AcountDAOException;
 public class RegistroController implements Initializable {
     public Button boton_login;
     public Button boton_contacto;
+    public ImageView perfil;
     @FXML
     private Button boton_aceptar;
     @FXML
@@ -62,12 +66,12 @@ public class RegistroController implements Initializable {
     private Button avatar;
     
     private Image image = null;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boton_login.setOnAction(actionEvent -> login());
-        boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());             
-        
+        boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
+        avatar.setOnAction(e -> selectAvatar());
         
         //inicializo las boolean properties
         validCorreo = new SimpleBooleanProperty();
@@ -112,7 +116,6 @@ public class RegistroController implements Initializable {
         });
         
         //boton_aceptar deshabilitado hasta que haya texto en todos los campos
-         
     }
     public void login(){
         Stage stage = (Stage) boton_login.getScene().getWindow();
@@ -247,28 +250,25 @@ public class RegistroController implements Initializable {
         
 
     }
-    
-    
-    
-    /*private void searchIMG(ActionEvent event) {
+
+    private final Image defaultImage = new Image("Resources/icons/perfil.png");
+
+    private void selectAvatar() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Buscar avatar");
-        
-        // Filtro para facilitar la busqueda
+        fileChooser.setTitle("Seleccione una imagen de perfil");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Todos los archivos", "."),
-                new FileChooser.ExtensionFilter("JPG", ".jpg"),
-                new FileChooser.ExtensionFilter("PNG", ".png")
+                new FileChooser.ExtensionFilter("Archivos de imagen", "*.png", "*.jpg"),
+                new FileChooser.ExtensionFilter("Todos los archivos", "*.*")
         );
-        
-        // Obtener la imagen
-        File imgFile = fileChooser.showOpenDialog(null);
-        
-        // Mostrar la imagen
-        if (imgFile != null) {
-            Image image = new Image(imgFile.getAbsolutePath());
-            selectedImage = image;
+
+        // Mostrar el diálogo para seleccionar el archivo
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            // Actualizar la imagen en el ImageView con la nueva imagen
+            Image fotoPerfil = new Image(selectedFile.toURI().toString());
+            perfil.setImage(fotoPerfil);
         }
-        
-    }*/
+    }
+
 }
