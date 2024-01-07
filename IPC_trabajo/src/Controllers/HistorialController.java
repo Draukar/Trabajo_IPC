@@ -25,9 +25,10 @@ public class HistorialController implements Initializable {
     public TableColumn fecha;
     public TableColumn cantidad;
     public TableColumn concepto;
-    public TableColumn saldo;
+    public TableColumn unidades;
     public TableView mov_tableview;
     public Button boton_exportar;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,6 +51,7 @@ public class HistorialController implements Initializable {
         categoria.setCellValueFactory(new PropertyValueFactory<>("category"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         cantidad.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         concepto.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         try {

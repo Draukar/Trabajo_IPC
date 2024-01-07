@@ -28,6 +28,7 @@ import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 
+
 public class GastoController implements Initializable {
 
 
@@ -52,18 +53,18 @@ public class GastoController implements Initializable {
     private BooleanProperty validFecha = new SimpleBooleanProperty();
     private BooleanProperty camposNoVacios = new SimpleBooleanProperty(false);
     private BooleanProperty valido = new SimpleBooleanProperty(false);
-    
+
     private Image imgDefault;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         imgDefault = imgScan.getImage();
-        
+
         validCantidad.setValue(Boolean.FALSE);
-        validUnidades.setValue(Boolean.FALSE);
         validCategoria.setValue(Boolean.FALSE);
         validFecha.setValue(Boolean.FALSE);
         valido.setValue(Boolean.FALSE);
@@ -91,7 +92,6 @@ public class GastoController implements Initializable {
         });
         boton_categoria.setOnAction(actionEvent -> {
             Model.getInstance().getMainView().ventanaCategoria();
-            cerrar();
         });
 
         //Cargar categorías
@@ -107,7 +107,7 @@ public class GastoController implements Initializable {
         Stage stage = (Stage) boton_limpiar.getScene().getWindow();
         stage.hide();
     }
-    private void cargarCategorias() throws AcountDAOException, IOException {
+    public void cargarCategorias() throws AcountDAOException, IOException {
         List<Category> categorias = Acount.getInstance().getUserCategories();
         ObservableList<model.Category> listaCategorias = FXCollections.observableArrayList(categorias);
         categoria.setItems(listaCategorias);
@@ -122,6 +122,13 @@ public class GastoController implements Initializable {
                 return null;
             }
         });
+    }
+    public void actualizarCategorias() {
+        try {
+            cargarCategorias();
+        } catch (AcountDAOException | IOException e) {
+            e.printStackTrace();
+        }
     }
     private void bindValidCantidad() {
         cantidad.textProperty().addListener((observableValue, oldVal, newVal) -> {
@@ -147,13 +154,11 @@ public class GastoController implements Initializable {
                 errorlbl_cantidad.setText("Las unidades deben ser enteras");
                 errorlbl_cantidad.visibleProperty().set(true);
                 unidades.setStyle("-fx-border-color: red;");
-                validCantidad.set(false);
             } else {
                 errorlbl_cantidad.visibleProperty().set(false);
                 unidades.setStyle(""); // Restablecer el estilo
-                validUnidades.set(true);
             }
-        }); validUnidades.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAnadir());
+        });
     }
     private boolean isValidUnidades(String text) {
         String decimalPattern = "\\d";
@@ -196,7 +201,7 @@ public class GastoController implements Initializable {
     }
     private void actualizarEstadoBotonAnadir() {
         camposNoVacios.set(!concepto.getText().isEmpty() && !descripcion.getText().isEmpty());
-        boton_anadir.setDisable(!(validCantidad.get() && validUnidades.get() && validCategoria.get() && validFecha.get() && camposNoVacios.get()));
+        boton_anadir.setDisable(!(validCantidad.get() && validCategoria.get() && validFecha.get() && camposNoVacios.get()));
     }
 
     private void anadirGasto() throws AcountDAOException, IOException {
@@ -247,7 +252,7 @@ public class GastoController implements Initializable {
         fecha.setValue(null);
         imgScan.setImage(imgDefault);
         descripcion.setText("");
-        
+
         concepto.requestFocus();
     }
 

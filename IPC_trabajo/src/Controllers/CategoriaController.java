@@ -8,7 +8,10 @@ import java.util.Locale.Category;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.sun.webkit.Timer;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -67,8 +70,8 @@ public class CategoriaController implements Initializable {
                 boton_anadir.setDisable(true);
             }
         });
-        
-        campo_nombre.focusedProperty().addListener((a, b, c) -> {     
+
+        campo_nombre.focusedProperty().addListener((a, b, c) -> {
             if(!c){
                 try {
                     validarCategoria();
@@ -78,7 +81,7 @@ public class CategoriaController implements Initializable {
             }
         });
     }   
-    
+
     public void validarCategoria() throws AcountDAOException, IOException{
         List<model.Category> categorias = Acount.getInstance().getUserCategories();
         boolean existeCategoria = false;
@@ -99,18 +102,16 @@ public class CategoriaController implements Initializable {
     }
     @FXML
     private void anadir(ActionEvent event) throws AcountDAOException, IOException {
-        /*
-        Con public List<Category> getUserCategories() tengo que comprabar si la categoría ya existe
-        Con public boolean registerCategory(String name, String description )  creo la nueva categoría
-        ¿Qué hago con el color de la categoría?
-        */
+        validarCategoria();
+
             boolean aux = Acount.getInstance().registerCategory(campo_nombre.getText(), campo_descripcion.getText());
-            if(aux){
+            if (aux) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Categoría creada correctamente");
                 alert.setHeaderText(null);
-                alert.setOnHidden(evento -> Model.getInstance().getMainView().ventanaGasto());           
+                cerrar();
                 alert.showAndWait();
             }
+        }
     }
 
     @FXML
@@ -118,5 +119,9 @@ public class CategoriaController implements Initializable {
         campo_nombre.setText("");
         campo_descripcion.setText("");
         campo_nombre.requestFocus();
+    }
+    private void cerrar(){
+        Stage stage = (Stage) boton_limpiar.getScene().getWindow();
+        stage.hide();
     }
 }
