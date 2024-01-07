@@ -3,6 +3,7 @@ package Controllers;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import Model.Model;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -20,7 +21,9 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boton_inicio.setOnAction(event -> inicio());
-        boton_anadir.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaGasto());
+        boton_anadir.setOnAction(actionEvent -> {
+            Model.getInstance().getMainView().ventanaGasto();
+        });
         boton_historial.setOnAction(event -> historial());
         boton_perfil.setOnAction(event -> perfil());
         boton_logout.setOnAction(actionEvent -> logout());

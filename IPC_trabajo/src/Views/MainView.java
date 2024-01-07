@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainView {
@@ -44,14 +45,22 @@ public class MainView {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Contacto.fxml"));
         crearStage(loader, "Contacto");
     }
-    
-    public void ventanaGasto(){
+
+    public Stage ventanaGasto() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Gasto.fxml"));
-        crearStage(loader, "Añadir Gasto");
+        Stage stageGasto = getStage(loader, "Añadir Gasto");
+        stageGasto.initModality(Modality.APPLICATION_MODAL);
+        stageGasto.showAndWait();
+
+        return stageGasto;
     }
-    public void ventanaCategoria(){
+    public Stage ventanaCategoria(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Categoria.fxml"));
-        crearStage(loader, "Añadir Categoría");
+        Stage stageCategoria = getStage(loader, "Añadir Categoría");
+        stageCategoria.initModality(Modality.APPLICATION_MODAL);
+        stageCategoria.showAndWait();
+
+        return stageCategoria;
     }
 
     // métodos Menú Aplicación
@@ -102,6 +111,22 @@ public class MainView {
         stage.show();
         stage.getIcons().add(new Image("Resources/icons/Ahorros.png"));
         stage.setResizable(false);
+    }
+    public Stage getStage(FXMLLoader loader, String titulo) {
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(titulo);
+        stage.getIcons().add(new Image("Resources/icons/Ahorros.png"));
+        stage.setResizable(false);
+
+        return stage;
     }
     public void cerrarStage(Stage stage){
         stage.close();

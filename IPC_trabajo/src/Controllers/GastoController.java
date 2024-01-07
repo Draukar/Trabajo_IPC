@@ -15,6 +15,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -46,15 +48,21 @@ public class GastoController implements Initializable {
     public Label errorlbl_fecha;
     public Label errorlbl_desc;
     private BooleanProperty validCantidad = new SimpleBooleanProperty();
+    private BooleanProperty validUnidades = new SimpleBooleanProperty();
     private BooleanProperty validCategoria = new SimpleBooleanProperty();
     private BooleanProperty validFecha = new SimpleBooleanProperty();
     private BooleanProperty camposNoVacios = new SimpleBooleanProperty(false);
     private BooleanProperty valido = new SimpleBooleanProperty(false);
+
+    private Image imgDefault;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        imgDefault = imgScan.getImage();
 
         validCantidad.setValue(Boolean.FALSE);
         validCategoria.setValue(Boolean.FALSE);
@@ -84,7 +92,6 @@ public class GastoController implements Initializable {
         });
         boton_categoria.setOnAction(actionEvent -> {
             Model.getInstance().getMainView().ventanaCategoria();
-            cerrar();
         });
 
         //Cargar categorías
@@ -100,7 +107,7 @@ public class GastoController implements Initializable {
         Stage stage = (Stage) boton_limpiar.getScene().getWindow();
         stage.hide();
     }
-    private void cargarCategorias() throws AcountDAOException, IOException {
+    public void cargarCategorias() throws AcountDAOException, IOException {
         List<Category> categorias = Acount.getInstance().getUserCategories();
         ObservableList<model.Category> listaCategorias = FXCollections.observableArrayList(categorias);
         categoria.setItems(listaCategorias);
@@ -115,6 +122,13 @@ public class GastoController implements Initializable {
                 return null;
             }
         });
+    }
+    public void actualizarCategorias() {
+        try {
+            cargarCategorias();
+        } catch (AcountDAOException | IOException e) {
+            e.printStackTrace();
+        }
     }
     private void bindValidCantidad() {
         cantidad.textProperty().addListener((observableValue, oldVal, newVal) -> {
@@ -227,6 +241,19 @@ public class GastoController implements Initializable {
             fotoTicket = new Image(selectedFile.toURI().toString());
             imgScan.setImage(fotoTicket);
         }
+    }
+
+    @FXML
+    private void limpiar(ActionEvent event) {
+        concepto.setText("");
+        cantidad.setText("");
+        unidades.setText("");
+        categoria.getSelectionModel().clearSelection();
+        fecha.setValue(null);
+        imgScan.setImage(imgDefault);
+        descripcion.setText("");
+
+        concepto.requestFocus();
     }
 
 
