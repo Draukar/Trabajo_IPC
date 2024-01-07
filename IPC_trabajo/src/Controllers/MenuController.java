@@ -19,16 +19,13 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addListeners();
-        boton_logout.setOnAction(actionEvent -> logout());
-        boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
-        boton_anadir.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaGasto());
-    }
-
-    private void addListeners(){
         boton_inicio.setOnAction(event -> inicio());
+        boton_anadir.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaGasto());
         boton_historial.setOnAction(event -> historial());
         boton_perfil.setOnAction(event -> perfil());
+        boton_logout.setOnAction(actionEvent -> logout());
+        boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
+
     }
 
     private void inicio(){

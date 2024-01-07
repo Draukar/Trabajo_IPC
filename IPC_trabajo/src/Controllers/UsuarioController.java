@@ -16,9 +16,6 @@ public class UsuarioController implements Initializable {
             switch (nuevoValor) {
                 case "Historial":
                     usuario_parent.setCenter(Model.getInstance().getMainView().getVistaHistorial());
-                    break;      
-                case "Añadir":
-                    usuario_parent.setCenter(Model.getInstance().getMainView().getVistaAnadir());
                     break;
                 case "Perfil":
                     usuario_parent.setCenter(Model.getInstance().getMainView().getVistaPerfil());
@@ -31,5 +28,4 @@ public class UsuarioController implements Initializable {
             }
         }));
     }
-
 }

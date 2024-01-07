@@ -132,6 +132,7 @@ Button:hover{
 }
 #Alerta{
     -fx-text-fill: #FF0000;
+    -fx-background-color: transparent;
 }
 /* Ventana Gasto */
 
@@ -163,6 +164,11 @@ Button:hover{
 }
 
 .gastos_boton_limpiar{
+    -fx-background-color: #D9DDDC;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+.gastos_cat{
     -fx-background-color: #D9DDDC;
     -fx-font-weight: bold;
     -fx-text-fill: #000000;
