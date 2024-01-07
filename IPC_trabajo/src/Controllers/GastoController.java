@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import Model.Model;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -40,8 +42,14 @@ public class GastoController implements Initializable {
     public DatePicker fecha;
     public ImageView imgScan;
     public Button boton_categoria;
+    public Label errorlbl_concepto;
+    public Label errorlbl_fecha;
+    public Label errorlbl_desc;
     private BooleanProperty validCantidad = new SimpleBooleanProperty();
     private BooleanProperty validUnidades = new SimpleBooleanProperty();
+    private BooleanProperty validCategoria = new SimpleBooleanProperty();
+    private BooleanProperty validFecha = new SimpleBooleanProperty();
+    private BooleanProperty camposNoVacios = new SimpleBooleanProperty(false);
     private BooleanProperty valido = new SimpleBooleanProperty(false);
     /**
      * Initializes the controller class.
@@ -51,10 +59,16 @@ public class GastoController implements Initializable {
 
         validCantidad.setValue(Boolean.FALSE);
         validUnidades.setValue(Boolean.FALSE);
+        validCategoria.setValue(Boolean.FALSE);
+        validFecha.setValue(Boolean.FALSE);
         valido.setValue(Boolean.FALSE);
         boton_anadir.setDisable(true);
+        bindValidacionCamposNoVacios();
         bindValidCantidad();
         bindValidUnidades();
+        bindValidCategoria();
+        bindValidFecha();
+
 
         boton_imagen.setOnAction(e -> scanIMG());
         boton_anadir.setOnAction(actionEvent -> {
@@ -110,6 +124,7 @@ public class GastoController implements Initializable {
                 errorlbl_cantidad.setText("Máximo 2 decimales, separados por punto");
                 errorlbl_cantidad.visibleProperty().set(true);
                 cantidad.setStyle("-fx-border-color: red;");
+                validCantidad.set(false);
             } else {
                 errorlbl_cantidad.visibleProperty().set(false);
                 cantidad.setStyle(""); // Restablecer el estilo
@@ -127,6 +142,7 @@ public class GastoController implements Initializable {
                 errorlbl_cantidad.setText("Las unidades deben ser enteras");
                 errorlbl_cantidad.visibleProperty().set(true);
                 unidades.setStyle("-fx-border-color: red;");
+                validCantidad.set(false);
             } else {
                 errorlbl_cantidad.visibleProperty().set(false);
                 unidades.setStyle(""); // Restablecer el estilo
@@ -138,8 +154,44 @@ public class GastoController implements Initializable {
         String decimalPattern = "\\d";
         return Pattern.matches(decimalPattern, text);
     }
+    private void bindValidCategoria() {
+        categoria.valueProperty().addListener((observableValue, oldVal, newVal) -> {
+            if (newVal == null) {
+                validCategoria.set(false);
+                unidades.setStyle("-fx-border-color: red;");
+            } else {
+                validCategoria.set(true);
+                unidades.setStyle("");
+            }
+        });
+        validCategoria.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAnadir());
+    }
+    private void bindValidFecha() {
+        fecha.valueProperty().addListener((observableValue, oldVal, newVal) -> {
+            if (newVal == null) {
+                validFecha.set(false);
+                errorlbl_fecha.setText("Debe seleccionar una fecha");
+                errorlbl_fecha.visibleProperty().set(true);
+            } else {
+                errorlbl_fecha.visibleProperty().set(false);
+                fecha.setStyle(""); // Restablecer el estilo
+                validFecha.set(true);
+            }
+        });
+        validFecha.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAnadir());
+    }
+    private void bindValidacionCamposNoVacios() {
+        concepto.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            actualizarEstadoBotonAnadir();
+        });
+
+        descripcion.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            actualizarEstadoBotonAnadir();
+        });
+    }
     private void actualizarEstadoBotonAnadir() {
-        boton_anadir.setDisable(!(validCantidad.get() && validUnidades.get()));
+        camposNoVacios.set(!concepto.getText().isEmpty() && !descripcion.getText().isEmpty());
+        boton_anadir.setDisable(!(validCantidad.get() && validUnidades.get() && validCategoria.get() && validFecha.get() && camposNoVacios.get()));
     }
 
     private void anadirGasto() throws AcountDAOException, IOException {

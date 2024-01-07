@@ -30,11 +30,15 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-                        <TextField fx:id="concepto" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="231.0">
-                            <VBox.margin>
-                                <Insets left="10.0" />
-                            </VBox.margin>
-                        </TextField>
+                  <HBox>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <children>
+                              <TextField fx:id="concepto" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="165.0" />
+                        <Label id="Alerta" fx:id="errorlbl_concepto" text="No puede ser nulo" translateX="15.0" translateY="6.0" visible="false" />
+                     </children>
+                  </HBox>
                   <HBox>
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -79,11 +83,15 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <DatePicker fx:id="fecha" prefHeight="22.0" prefWidth="110.0" promptText="dd/mm/aaaa" styleClass="gastos_cat">
+                  <HBox>
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
-                  </DatePicker>
+                     <children>
+                        <DatePicker fx:id="fecha" prefHeight="22.0" prefWidth="110.0" promptText="dd/mm/aaaa" styleClass="gastos_cat" />
+                        <Label id="Alerta" fx:id="errorlbl_fecha" text="Seleccione fecha" translateX="10.0" translateY="4.0" visible="false" />
+                     </children>
+                  </HBox>
                   <Label text="Subir foto:">
                      <VBox.margin>
                         <Insets left="10.0" />
@@ -117,5 +125,6 @@
         </AnchorPane>
         <Button fx:id="boton_anadir" layoutX="265.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="gastos_boton_anadir" text="Añadir" translateY="1.0" />
         <Button fx:id="boton_limpiar" layoutX="199.0" layoutY="409.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" text="Limpiar" />
+      <Label id="Alerta" fx:id="errorlbl_desc" layoutX="10.0" layoutY="10.0" text="No puede ser nulo" translateY="385.0" visible="false" />
     </children>
 </AnchorPane>
