@@ -2,6 +2,9 @@ package Controllers;
 
 import Model.Model;
 import java.io.IOException;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +28,7 @@ public class LoginController implements Initializable {
     public Label error_lbl;
     public Button boton_registro;
     public Button boton_contacto;
+    private BooleanProperty camposNoVacios = new SimpleBooleanProperty(false);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,20 +37,21 @@ public class LoginController implements Initializable {
         
         //boton_login deshabilitado hasta que haya texto tanto en campo_usuario como en campo_contraseña
         boton_login.setDisable(true);
-        
-        campo_usuario.textProperty().addListener((a, b, c) -> {
-            
-            if(!campo_contraseña.getText().isEmpty() && !campo_usuario.getText().isEmpty()){
-                boton_login.setDisable(false);
-            }else boton_login.setDisable(true);
+        bindValidacionCamposNoVacios();
+    }
+    private void bindValidacionCamposNoVacios() {
+        campo_usuario.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            actualizarBotonLogin();
         });
-        
-        campo_contraseña.textProperty().addListener((a, b, c) -> {
-            
-            if(!campo_contraseña.getText().isEmpty() && !campo_usuario.getText().isEmpty()){
-                boton_login.setDisable(false);
-            }else boton_login.setDisable(true);
-        });   
+
+        campo_contraseña.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            actualizarBotonLogin();
+        });
+    }
+
+    private void actualizarBotonLogin() {
+        camposNoVacios.set(!campo_usuario.getText().isEmpty() && !campo_contraseña.getText().isEmpty());
+        boton_login.setDisable(!camposNoVacios.get());
     }
     /*
         Comprobar que el usuario y la contraseña son correctos, existen
@@ -57,12 +62,7 @@ public class LoginController implements Initializable {
                           borrar el contenido de los campos
                           situar al usuario en el campo_usuario 
         */
-    public void loggear(){
-        Stage stage = (Stage) boton_login.getScene().getWindow();
-        Model.getInstance().getMainView().cerrarStage(stage);
-        Model.getInstance().getMainView().ventanaInicio();
 
-    }
     public void registro(){
         Stage stage = (Stage) boton_login.getScene().getWindow();
         Model.getInstance().getMainView().cerrarStage(stage);
@@ -74,7 +74,6 @@ public class LoginController implements Initializable {
         Stage stage = (Stage) boton_login.getScene().getWindow();
         Model.getInstance().getMainView().cerrarStage(stage);
         Model.getInstance().getMainView().ventanaInicio();
-
     }
 
 
@@ -82,12 +81,11 @@ public class LoginController implements Initializable {
     private void acceder(ActionEvent event) throws AcountDAOException, IOException {
         String usuario = campo_usuario.getText();
         String password = campo_contraseña.getText();
-        
 
-        if (Acount.getInstance().logInUserByCredentials(usuario, password)){
+        if (Acount.getInstance().logInUserByCredentials(usuario, password)) {
             error_lbl.visibleProperty().set(false);
-            boton_login.setOnAction(actionEvent -> inicio());
-        }else{
+            inicio();
+        } else {
             error_lbl.visibleProperty().set(true);
             campo_usuario.setText("");
             campo_contraseña.setText("");

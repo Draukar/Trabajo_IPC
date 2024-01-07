@@ -51,7 +51,8 @@ public class RegistroController implements Initializable {
     private BooleanProperty validCorreo = new SimpleBooleanProperty();
     private BooleanProperty validUsuario = new SimpleBooleanProperty();
     private BooleanProperty validContraseña = new SimpleBooleanProperty();
-    private BooleanProperty equalContraseñas = new SimpleBooleanProperty();  
+    private BooleanProperty equalContraseñas = new SimpleBooleanProperty();
+    private BooleanProperty ValidacionesExitosas = new SimpleBooleanProperty(false);
     @FXML
     private Label errorlbl_correo;
     @FXML
@@ -71,45 +72,19 @@ public class RegistroController implements Initializable {
         boton_login.setOnAction(actionEvent -> login());
         boton_contacto.setOnAction(actionEvent -> Model.getInstance().getMainView().ventanaContacto());
         avatar.setOnAction(e -> selectedAvatar());
-        
+
         //inicializo las boolean properties
         validCorreo.setValue(Boolean.FALSE);
         validUsuario.setValue(Boolean.FALSE);
         validContraseña.setValue(Boolean.FALSE);   
         equalContraseñas.setValue(Boolean.FALSE);
-        
-         //Listener a la propiedad focused que indica cuándo el usuario está en el TextField
-        campo_correo.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarEmail();
-            }
-        });
-        
-        campo_usuario.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){try {
-                //focus lost
-                comprobarUsuario();
-                } catch (AcountDAOException ex) {
-                    Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        
-        campo_contraseña.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarContraseña();
-            }
-        });
-        
-        campo_rep_contraseña.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarIguales();
-            }
-        });
-        
-        //boton_aceptar deshabilitado hasta que haya texto en todos los campos
+
+        boton_aceptar.setDisable(true);
+
+        bindValidacionCampoUsuario();
+        bindValidacionCorreo();
+        bindValidacionCampoContraseña();
+        bindValidacionConfirmarContraseña();
     }
     public void login(){
         Stage stage = (Stage) boton_login.getScene().getWindow();
@@ -119,18 +94,17 @@ public class RegistroController implements Initializable {
     }
     //Funciones para comprobar si los campos son correctos
 
-    private void comprobarEmail(){
-        if(!Utils.checkEmail(campo_correo.textProperty().getValueSafe())){
-            validCorreo.setValue(Boolean.FALSE);
-            errorlbl_correo.visibleProperty().set(true);
-            campo_correo.styleProperty().setValue("-fx-background-color: #FCE5E0");
-            campo_correo.requestFocus();
-        }else{
-            validCorreo.setValue(Boolean.TRUE);
-            errorlbl_correo.visibleProperty().set(false);
-            campo_correo.styleProperty().setValue("");
-        }
-            
+    private void bindValidacionCorreo() {
+        campo_correo.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!Utils.checkEmail(newValue)) {
+                validCorreo.set(false);
+                errorlbl_correo.visibleProperty().set(true);
+            } else {
+                validCorreo.set(true);
+                errorlbl_correo.visibleProperty().set(false);
+            }
+        });
+        validCorreo.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
     }
     /*
     Comprobar el usuario
@@ -138,60 +112,68 @@ public class RegistroController implements Initializable {
     2º El usuario no puede contener espacios
     3ª El usuario no puede existir ya
     */
-    private void comprobarUsuario() throws AcountDAOException, IOException{
-        
-        if(campo_usuario.textProperty().getValueSafe() == null){ //error si es null
-            validUsuario.setValue(Boolean.FALSE);
-            errorlbl_usuario.setText("El usuario no puede ser nulo");
-            errorlbl_usuario.visibleProperty().set(true);
-            campo_usuario.requestFocus();
-        }else if(campo_usuario.textProperty().getValueSafe().contains(" ")){ //error si tiene espacio
-            validUsuario.setValue(Boolean.FALSE);
-            errorlbl_usuario.setText("El usuario no puede contener espacios");
-            errorlbl_usuario.visibleProperty().set(true);
-            campo_usuario.requestFocus();
-        }else if(Acount.getInstance().existsLogin(campo_usuario.textProperty().getValueSafe())){ //error si ya existe
-            validUsuario.setValue(Boolean.FALSE);
-            errorlbl_usuario.setText("El usuario ya existe");
-            errorlbl_usuario.visibleProperty().set(true);
-            campo_usuario.requestFocus();
-        } else
-            validUsuario.setValue(Boolean.TRUE);
-            errorlbl_usuario.visibleProperty().set(false);
-            campo_usuario.styleProperty().setValue("");        
+    private void bindValidacionCampoUsuario() {
+        campo_usuario.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue == null) {
+                validUsuario.set(false);
+                errorlbl_usuario.setText("No puede ser nulo");
+                errorlbl_usuario.visibleProperty().set(true);
+            } else if (newValue.contains(" ")) {
+                validUsuario.set(false);
+                errorlbl_usuario.setText("No puede contener espacios");
+                errorlbl_usuario.visibleProperty().set(true);
+            } else {
+                try {
+                    if (Acount.getInstance().existsLogin(newValue)) {
+                        validUsuario.set(false);
+                        errorlbl_usuario.setText("El usuario ya existe");
+                        errorlbl_usuario.visibleProperty().set(true);
+                    } else {
+                        validUsuario.set(true);
+                        errorlbl_usuario.visibleProperty().set(false);
+                    }
+                } catch (AcountDAOException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        validUsuario.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
     }
-    
-    private void comprobarContraseña(){
-        if(!Utils.checkPassword(campo_contraseña.textProperty().getValueSafe())){
-            validContraseña.setValue(Boolean.FALSE);
-            errorlbl_contraseña.visibleProperty().set(true);
-            campo_contraseña.styleProperty().setValue("-fx-background-color: #FCE5E0");
-            campo_contraseña.requestFocus();
-        }else{
-            validContraseña.setValue(Boolean.TRUE);
-            errorlbl_contraseña.visibleProperty().set(false);
-            campo_contraseña.styleProperty().setValue("");
-        }
 
+    private void bindValidacionCampoContraseña() {
+        campo_contraseña.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!Utils.checkPassword(newValue)) {
+                validContraseña.set(false);
+                errorlbl_contraseña.visibleProperty().set(true);
+            } else {
+                validContraseña.set(true);
+                errorlbl_contraseña.visibleProperty().set(false);
+            }
+        });
+        validContraseña.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
     }
-    
-    private void comprobarIguales(){
-        if(campo_contraseña.textProperty().getValueSafe().compareTo(
-           campo_rep_contraseña.textProperty().getValueSafe()) != 0){
-            campo_rep_contraseña.styleProperty().setValue("-fx-background-color: #FCE5E0");
-            campo_contraseña.styleProperty().setValue("-fx-background-color: #FCE5E0");
-            campo_rep_contraseña.requestFocus();
-            errorlbl_rep_contraseña.visibleProperty().set(true);
-            equalContraseñas.setValue(Boolean.FALSE);
-            campo_rep_contraseña.textProperty().setValue("");
-            campo_contraseña.textProperty().setValue("");
-            campo_contraseña.requestFocus();
-        }else{
-            equalContraseñas.setValue(Boolean.TRUE);
-            errorlbl_rep_contraseña.visibleProperty().set(false);
-            campo_contraseña.styleProperty().setValue("");
-            campo_rep_contraseña.styleProperty().setValue("");
-        }
+
+    private void bindValidacionConfirmarContraseña() {
+        campo_rep_contraseña.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!newValue.equals(campo_contraseña.textProperty().getValueSafe())) {
+                equalContraseñas.set(false);
+                campo_rep_contraseña.setStyle("-fx-background-color: #FCE5E0");
+                campo_contraseña.setStyle("-fx-background-color: #FCE5E0");
+                errorlbl_rep_contraseña.visibleProperty().set(true);
+            } else {
+                equalContraseñas.set(true);
+                errorlbl_rep_contraseña.visibleProperty().set(false);
+                campo_contraseña.setStyle("");
+                campo_rep_contraseña.setStyle("");
+            }
+        });
+        equalContraseñas.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
+    }
+
+    private void actualizarEstadoBotonAceptar() {
+        boton_aceptar.setDisable(!(validUsuario.get() && validCorreo.get() && validContraseña.get() && equalContraseñas.get()));
     }
 
     private Image fotoPerfil = new Image("Resources/icons/perfil.png");
@@ -209,7 +191,7 @@ public class RegistroController implements Initializable {
 
         if (selectedFile != null) {
             // Actualizar la imagen en el ImageView con la nueva imagen
-            Image fotoPerfil = new Image(selectedFile.toURI().toString());
+            fotoPerfil = new Image(selectedFile.toURI().toString());
             perfil.setImage(fotoPerfil);
         }
     }
@@ -224,7 +206,7 @@ public class RegistroController implements Initializable {
         String partes_nombre[] = campo_nombre.getText().split(" ");
         String nombre = partes_nombre[0];
         StringBuilder apellidos = new StringBuilder();
-        for(int i = 1; i < partes_nombre.length; i++){
+        for (int i = 1; i < partes_nombre.length; i++) {
             apellidos.append(partes_nombre[i]);
         }
         String correo = campo_correo.getText();
@@ -232,22 +214,23 @@ public class RegistroController implements Initializable {
         String contraseña = campo_contraseña.getText();
 
         Image avatar = getSelectedAvatar();
-        
+
         LocalDate fecha_registro = LocalDate.now();
-        
-        boolean res = Acount.getInstance().registerUser(nombre, apellidos.toString(), correo,usuario, contraseña, avatar, fecha_registro);
-        if(res){
+
+        boolean res = Acount.getInstance().registerUser(nombre, apellidos.toString(), correo, usuario, contraseña, avatar, fecha_registro);
+        if (res) {
             Alert alert = new Alert(AlertType.INFORMATION, "Usuario creado correctamente");
             alert.setHeaderText(null);
             alert.setOnHidden(actionEvent -> crear());
             alert.showAndWait();
         }
+    }
+
 
     public void crear(){
         Stage stage = (Stage) boton_login.getScene().getWindow();
         Model.getInstance().getMainView().cerrarStage(stage);
         Model.getInstance().getMainView().ventanaLogin();
-
     }
 
 

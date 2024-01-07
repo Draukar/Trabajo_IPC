@@ -8,11 +8,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="440.0" prefWidth="673.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioController">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="440.0" prefWidth="673.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" styleClass="encabezado" text="Buenos días, &quot;Nombre&quot;" />
+      <Label fx:id="Saludo" layoutX="14.0" layoutY="14.0" styleClass="encabezado" text="Buenos días, &quot;Nombre&quot;" />
       <AnchorPane layoutX="31.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="200.0">
          <children>
             <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado Text" text="Ingresos y gastos del mes: " />
@@ -33,7 +34,11 @@
                   </VBox>
                </children>
             </HBox>
-            <Pane fx:id="compIngGas_pane" layoutY="25.0" prefHeight="78.0" prefWidth="200.0" styleClass="borderPane" />
+            <Pane fx:id="compIngGas_pane" layoutY="25.0" prefHeight="78.0" prefWidth="200.0" styleClass="borderPane">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="30.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="131.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+               </children></Pane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="220.0" prefHeight="200.0" prefWidth="426.0">
@@ -41,11 +46,11 @@
             <TableView fx:id="mov_tableview" layoutX="20.0" layoutY="19.0" prefHeight="162.0" prefWidth="611.0">
               <columns>
                   <TableColumn prefWidth="34.4000244140625" />
-                <TableColumn prefWidth="117.5999755859375" text="Categoría" />
-                <TableColumn prefWidth="102.39994812011719" text="Fecha" />
-                  <TableColumn prefWidth="98.4000244140625" text="Cantidad (€)" />
-                  <TableColumn prefWidth="152.0" text="Concepto" />
-                  <TableColumn minWidth="0.0" prefWidth="102.39990234375" text="Saldo restante" />
+                <TableColumn fx:id="categoria" prefWidth="117.5999755859375" text="Categoría" />
+                <TableColumn fx:id="fecha" prefWidth="102.39994812011719" text="Fecha" />
+                  <TableColumn fx:id="cantidad" prefWidth="98.4000244140625" text="Cantidad (€)" />
+                  <TableColumn fx:id="concepto" prefWidth="152.0" text="Concepto" />
+                  <TableColumn fx:id="saldo" minWidth="0.0" prefWidth="102.39990234375" text="Saldo restante" />
               </columns>
             </TableView>
             <Text layoutX="20.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado Text" text="Últimos movimientos:" />

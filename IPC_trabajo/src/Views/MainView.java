@@ -49,6 +49,10 @@ public class MainView {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Gasto.fxml"));
         crearStage(loader, "Añadir Gasto");
     }
+    public void ventanaCategoria(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/FXML/Categoria.fxml"));
+        crearStage(loader, "Añadir Categoría");
+    }
 
     // métodos Menú Aplicación
 

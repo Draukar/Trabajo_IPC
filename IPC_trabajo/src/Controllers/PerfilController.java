@@ -1,28 +1,32 @@
 package Controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Model.Utils;
+import Model.Model;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import model.Acount;
 import model.AcountDAOException;
 import model.User;
 
 public class PerfilController implements Initializable{
 
+    public Button boton_guardar;
+    public Button boton_cancelar;
+    public Button boton_imagen;
     @FXML
     private TextField campo_nombre;
     @FXML
@@ -43,10 +47,6 @@ public class PerfilController implements Initializable{
     private Label fecha_registro;
     @FXML
     private ImageView avatar;
-    @FXML
-    private Button boton_guardar;
-    @FXML
-    private Button boton_cancelar;
     
     
     
@@ -60,7 +60,9 @@ public class PerfilController implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        boton_guardar.setDisable(true);
+        boton_imagen.setOnAction(actionEvent -> selectedAvatar());
+        boton_cancelar.setOnAction(actionEvent -> Model.getInstance().getMainView().getMenuSeleccionado().set("Inicio"));
         //Inicializar todos los campos con los datos del usuario
         String nombre = null;
         String apellidos = null;
@@ -87,39 +89,101 @@ public class PerfilController implements Initializable{
         fecha_registro.setText(registro.toString());
         
         //Inicializo las focusedProperties
-        validCorreo.setValue(Boolean.FALSE);
-        validUsuario.setValue(Boolean.FALSE);
-        validContraseña.setValue(Boolean.FALSE);   
+        validCorreo.setValue(Boolean.TRUE);
+        validUsuario.setValue(Boolean.TRUE);
+        validContraseña.setValue(Boolean.FALSE);
         equalContraseñas.setValue(Boolean.FALSE);
-        
-        //Comprobar que los datos introducidos en los campos son correctos
-        /*campo_correo.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarEmail();
-            }
-        });
-        
-        campo_usuario.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarUsuario();
-            }
 
-        });
-        
-        campo_contraseña.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarContraseña();
-            }
-        });
-        
-        campo_rep_contraseña.focusedProperty().addListener((observable,oldValue,newValue)->{
-            if(!newValue){//focus lost
-                comprobarIguales();
-            }
-        });*/
+        bindValidacionCorreo();
+        bindValidacionCampoContraseña();
+        bindValidacionConfirmarContraseña();
+
     }
 
     @FXML
-    private void Acceder(ActionEvent event) {
+    private void bindValidacionCorreo() {
+        campo_correo.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!Utils.checkEmail(newValue)) {
+                validCorreo.set(false);
+                errorlbl_correo.visibleProperty().set(true);
+            } else {
+                validCorreo.set(true);
+                errorlbl_correo.visibleProperty().set(false);
+            }
+        });
+        validCorreo.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
+    }
+    private void bindValidacionCampoContraseña() {
+        campo_contraseña.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!Utils.checkPassword(newValue)) {
+                validContraseña.set(false);
+                errorlbl_contraseña.visibleProperty().set(true);
+            } else {
+                validContraseña.set(true);
+                errorlbl_contraseña.visibleProperty().set(false);
+            }
+        });
+        validContraseña.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
+    }
+    private void bindValidacionConfirmarContraseña() {
+        campo_rep_contraseña.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!newValue.equals(campo_contraseña.textProperty().getValueSafe())) {
+                equalContraseñas.set(false);
+                campo_rep_contraseña.setStyle("-fx-background-color: #FCE5E0");
+                campo_contraseña.setStyle("-fx-background-color: #FCE5E0");
+                errorlbl_rep_contraseña.visibleProperty().set(true);
+            } else {
+                equalContraseñas.set(true);
+                errorlbl_rep_contraseña.visibleProperty().set(false);
+                campo_contraseña.setStyle("");
+                campo_rep_contraseña.setStyle("");
+            }
+        });
+        equalContraseñas.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAceptar());
+    }
+
+    private void actualizarEstadoBotonAceptar() {
+        boolean condicionesCumplidas = validCorreo.get() && validContraseña.get() && equalContraseñas.get();
+        boton_guardar.setDisable(!condicionesCumplidas);
+        if (condicionesCumplidas) {
+            boton_guardar.setOnAction(this::actualizarPerfil);
+        } else {
+            boton_guardar.setOnAction(null); // Desasignar el evento si las condiciones no se cumplen
+        }
+    }
+
+    private void selectedAvatar() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccione una imagen de perfil");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Archivos de imagen", "*.png", "*.jpg"),
+                new FileChooser.ExtensionFilter("Todos los archivos", "*.*")
+        );
+
+        // Mostrar el diálogo para seleccionar el archivo
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            // Actualizar la imagen en el ImageView con la nueva imagen
+            Image fotoPerfil = new Image(selectedFile.toURI().toString());
+            avatar.setImage(fotoPerfil);
+        }
+    }
+
+    private void actualizarPerfil(ActionEvent event) {
+        try {
+            Acount acount = Acount.getInstance();
+            User user = acount.getLoggedUser();
+            user.setName(campo_nombre.getText());
+            user.setEmail(campo_correo.getText());
+            user.setPassword(campo_contraseña.getText());
+            user.setImage(avatar.getImage());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se han guardado los datos correctamente");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        } catch (AcountDAOException | IOException ex) {
+            Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
