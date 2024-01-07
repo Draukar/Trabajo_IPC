@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale.Category;
 import java.util.ResourceBundle;
+
+import com.sun.webkit.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -94,7 +96,9 @@ public class CategoriaController implements Initializable {
             if(aux){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Categoría creada correctamente");
                 alert.setHeaderText(null);
-                alert.setOnHidden(evento -> Model.getInstance().getMainView().ventanaGasto());           
+                alert.setOnHidden(evento -> Model.getInstance().getMainView().ventanaGasto());
+                Stage stage = (Stage) boton_anadir.getScene().getWindow();
+                Model.getInstance().getMainView().cerrarStage(stage);
                 alert.showAndWait();
             }
         }

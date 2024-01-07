@@ -33,7 +33,7 @@ public class InicioController implements Initializable {
     public TableColumn<Charge, LocalDate> fecha;
     public TableColumn<Charge, Double> cantidad;
     public TableColumn<Charge, String> concepto;
-    public TableColumn saldo;
+    public TableColumn<Charge, Integer> unidades;
     String nombre = null;
 
     @Override
@@ -66,6 +66,7 @@ public class InicioController implements Initializable {
         categoria.setCellValueFactory(new PropertyValueFactory<>("category"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         cantidad.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        unidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         concepto.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         try {
