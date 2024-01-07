@@ -46,7 +46,6 @@ public class GastoController implements Initializable {
     public Label errorlbl_fecha;
     public Label errorlbl_desc;
     private BooleanProperty validCantidad = new SimpleBooleanProperty();
-    private BooleanProperty validUnidades = new SimpleBooleanProperty();
     private BooleanProperty validCategoria = new SimpleBooleanProperty();
     private BooleanProperty validFecha = new SimpleBooleanProperty();
     private BooleanProperty camposNoVacios = new SimpleBooleanProperty(false);
@@ -58,7 +57,6 @@ public class GastoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         validCantidad.setValue(Boolean.FALSE);
-        validUnidades.setValue(Boolean.FALSE);
         validCategoria.setValue(Boolean.FALSE);
         validFecha.setValue(Boolean.FALSE);
         valido.setValue(Boolean.FALSE);
@@ -142,13 +140,11 @@ public class GastoController implements Initializable {
                 errorlbl_cantidad.setText("Las unidades deben ser enteras");
                 errorlbl_cantidad.visibleProperty().set(true);
                 unidades.setStyle("-fx-border-color: red;");
-                validCantidad.set(false);
             } else {
                 errorlbl_cantidad.visibleProperty().set(false);
                 unidades.setStyle(""); // Restablecer el estilo
-                validUnidades.set(true);
             }
-        }); validUnidades.addListener((observable, oldValue, newValue) -> actualizarEstadoBotonAnadir());
+        });
     }
     private boolean isValidUnidades(String text) {
         String decimalPattern = "\\d";
@@ -191,7 +187,7 @@ public class GastoController implements Initializable {
     }
     private void actualizarEstadoBotonAnadir() {
         camposNoVacios.set(!concepto.getText().isEmpty() && !descripcion.getText().isEmpty());
-        boton_anadir.setDisable(!(validCantidad.get() && validUnidades.get() && validCategoria.get() && validFecha.get() && camposNoVacios.get()));
+        boton_anadir.setDisable(!(validCantidad.get() && validCategoria.get() && validFecha.get() && camposNoVacios.get()));
     }
 
     private void anadirGasto() throws AcountDAOException, IOException {

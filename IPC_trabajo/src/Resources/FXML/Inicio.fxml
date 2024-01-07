@@ -49,8 +49,8 @@
                 <TableColumn fx:id="categoria" prefWidth="117.5999755859375" text="Categoría" />
                 <TableColumn fx:id="fecha" prefWidth="102.39994812011719" text="Fecha" />
                   <TableColumn fx:id="cantidad" prefWidth="98.4000244140625" text="Cantidad (€)" />
+                  <TableColumn fx:id="unidades" minWidth="0.0" prefWidth="102.39990234375" text="Unidades" />
                   <TableColumn fx:id="concepto" prefWidth="152.0" text="Concepto" />
-                  <TableColumn fx:id="saldo" minWidth="0.0" prefWidth="102.39990234375" text="Saldo restante" />
               </columns>
             </TableView>
             <Text layoutX="20.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado Text" text="Últimos movimientos:" />
