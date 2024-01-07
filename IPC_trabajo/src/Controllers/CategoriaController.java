@@ -50,8 +50,8 @@ public class CategoriaController implements Initializable {
         */
         boton_anadir.setDisable(true);
         boton_limpiar.setDisable(true);
-        
-        campo_nombre.textProperty().addListener((a, b, c) -> {     
+
+        campo_nombre.textProperty().addListener((a, b, c) -> {
             if(!campo_nombre.getText().isEmpty()){
                 boton_limpiar.setDisable(false);
                 if(!campo_descripcion.getText().isEmpty())boton_anadir.setDisable(false);
@@ -60,8 +60,8 @@ public class CategoriaController implements Initializable {
                 boton_anadir.setDisable(true);
             }
         });
-        
-        campo_descripcion.textProperty().addListener((a, b, c) -> {           
+
+        campo_descripcion.textProperty().addListener((a, b, c) -> {
             if(!campo_descripcion.getText().isEmpty()){
                 boton_limpiar.setDisable(false);
                 if(!campo_nombre.getText().isEmpty()) boton_anadir.setDisable(false);
@@ -80,14 +80,14 @@ public class CategoriaController implements Initializable {
                 }
             }
         });
-    }   
+    }
 
     public void validarCategoria() throws AcountDAOException, IOException{
         List<model.Category> categorias = Acount.getInstance().getUserCategories();
         boolean existeCategoria = false;
         for (int i = 0; i < categorias.size(); i++) {
             if (campo_nombre.getText().equals(categorias.get(i).getName())) {
-                 // La categoría ya existe en la lista               
+                // La categoría ya existe en la lista
                 existeCategoria = true;
                 break;  // Puedes salir del bucle tan pronto como encuentres la categoría
             }
@@ -102,15 +102,17 @@ public class CategoriaController implements Initializable {
     }
     @FXML
     private void anadir(ActionEvent event) throws AcountDAOException, IOException {
-        validarCategoria();
-
-            boolean aux = Acount.getInstance().registerCategory(campo_nombre.getText(), campo_descripcion.getText());
-            if (aux) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Categoría creada correctamente");
-                alert.setHeaderText(null);
-                cerrar();
-                alert.showAndWait();
-            }
+        /*
+        Con public List<Category> getUserCategories() tengo que comprabar si la categoría ya existe
+        Con public boolean registerCategory(String name, String description )  creo la nueva categoría
+        ¿Qué hago con el color de la categoría?
+        */
+        boolean aux = Acount.getInstance().registerCategory(campo_nombre.getText(), campo_descripcion.getText());
+        if(aux){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Categoría creada correctamente");
+            alert.setHeaderText(null);
+            cerrar();
+            alert.showAndWait();
         }
     }
 
