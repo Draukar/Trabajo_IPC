@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale.Category;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,20 +66,24 @@ public class CategoriaController implements Initializable {
                 boton_limpiar.setDisable(true);
                 boton_anadir.setDisable(true);
             }
-        }); 
+        });
+        
+        campo_nombre.focusedProperty().addListener((a, b, c) -> {     
+            if(!c){
+                try {
+                    validarCategoria();
+                } catch (AcountDAOException | IOException ex) {
+                    Logger.getLogger(CategoriaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }   
-
-    @FXML
-    private void anadir(ActionEvent event) throws AcountDAOException, IOException {
-        /*
-        Con public List<Category> getUserCategories() tengo que comprabar si la categoría ya existe
-        Con public boolean registerCategory(String name, String description )  creo la nueva categoría
-        ¿Qué hago con el color de la categoría?
-        */
+    
+    public void validarCategoria() throws AcountDAOException, IOException{
         List<model.Category> categorias = Acount.getInstance().getUserCategories();
         boolean existeCategoria = false;
         for (int i = 0; i < categorias.size(); i++) {
-            if (campo_nombre.getText().equals(categorias.get(i))) {
+            if (campo_nombre.getText().equals(categorias.get(i).getName())) {
                  // La categoría ya existe en la lista               
                 existeCategoria = true;
                 break;  // Puedes salir del bucle tan pronto como encuentres la categoría
@@ -86,10 +92,18 @@ public class CategoriaController implements Initializable {
 
         if (existeCategoria) { //La categoría ya existe
             lbl_error.visibleProperty().set(true);
-            campo_nombre.setText("");
-            campo_descripcion.setText("");
             campo_nombre.requestFocus();
-        }else{ //Creo nueva categoría
+        }else{
+            lbl_error.visibleProperty().set(false);
+        }
+    }
+    @FXML
+    private void anadir(ActionEvent event) throws AcountDAOException, IOException {
+        /*
+        Con public List<Category> getUserCategories() tengo que comprabar si la categoría ya existe
+        Con public boolean registerCategory(String name, String description )  creo la nueva categoría
+        ¿Qué hago con el color de la categoría?
+        */
             boolean aux = Acount.getInstance().registerCategory(campo_nombre.getText(), campo_descripcion.getText());
             if(aux){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Categoría creada correctamente");
@@ -97,7 +111,6 @@ public class CategoriaController implements Initializable {
                 alert.setOnHidden(evento -> Model.getInstance().getMainView().ventanaGasto());           
                 alert.showAndWait();
             }
-        }
     }
 
     @FXML
