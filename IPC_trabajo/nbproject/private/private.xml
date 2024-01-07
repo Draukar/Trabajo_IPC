@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chris/OneDrive/Documents/GitHub/Trabajo_IPC/IPC_trabajo/src/Controllers/InicioController.java</file>
-            <file>file:/C:/Users/chris/OneDrive/Documents/GitHub/Trabajo_IPC/IPC_trabajo/src/Controllers/LoginController.java</file>
-            <file>jar:file:/C:/Users/chris/OneDrive/Documents/GitHub/Trabajo_IPC/IPC_trabajo/lib/acountIPC.jar!/META-INF/MANIFEST.MF</file>
+            <file>file:/C:/Users/Usuario/OneDrive/Documentos/GitHub/Trabajo_IPC/IPC_trabajo/src/Controllers/CategoriaController.java</file>
+            <file>file:/C:/Users/Usuario/OneDrive/Documentos/GitHub/Trabajo_IPC/IPC_trabajo/src/Controllers/GastoController.java</file>
+            <file>file:/C:/Users/Usuario/OneDrive/Documentos/GitHub/Trabajo_IPC/IPC_trabajo/src/Controllers/RegistroController.java</file>
+            <file>file:/C:/Users/Usuario/OneDrive/Documentos/GitHub/Trabajo_IPC/IPC_trabajo/src/Controllers/InicioController.java</file>
         </group>
     </open-files>
 </project-private>

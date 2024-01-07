@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="446.0" prefWidth="353.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
+<AnchorPane prefHeight="446.0" prefWidth="353.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
     <children>
         <AnchorPane layoutX="-2.0" prefHeight="52.0" prefWidth="353.0" styleClass="titulo" AnchorPane.rightAnchor="0.0">
             <children>
@@ -124,7 +124,7 @@
             </children>
         </AnchorPane>
         <Button fx:id="boton_anadir" layoutX="265.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="gastos_boton_anadir" text="Añadir" translateY="1.0" />
-        <Button fx:id="boton_limpiar" layoutX="199.0" layoutY="409.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" text="Limpiar" />
+        <Button fx:id="boton_limpiar" layoutX="199.0" layoutY="409.0" mnemonicParsing="false" onAction="#limpiar" styleClass="gastos_boton_limpiar" text="Limpiar" />
       <Label id="Alerta" fx:id="errorlbl_desc" layoutX="10.0" layoutY="10.0" text="No puede ser nulo" translateY="385.0" visible="false" />
     </children>
 </AnchorPane>
