@@ -1,5 +1,6 @@
 package Controllers;
 
+import Model.Model;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
@@ -17,6 +18,8 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 
 public class HistorialController implements Initializable {
@@ -28,6 +31,8 @@ public class HistorialController implements Initializable {
     public TableColumn unidades;
     public TableView mov_tableview;
     public Button boton_exportar;
+    @FXML
+    private Button boton_borrar;
 
 
     @Override
@@ -61,6 +66,25 @@ public class HistorialController implements Initializable {
         } catch (AcountDAOException | IOException e) {
             e.printStackTrace();
         }
+        
+        //Activar o desactivar el boton de borrar si hay algún gasto seleccionado o no
+        boton_borrar.setDisable(true);
+
+        // Agregar un listener a la selección de la TableView
+        mov_tableview.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Habilitar el botón de borrar si hay algo seleccionado
+                boton_borrar.setDisable(false);
+            } else {
+                // Desactivar el botón de borrar si no hay nada seleccionado
+                boton_borrar.setDisable(true);
+            }
+        });
+
+    }
+
+    @FXML
+    private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
 
     }
 }

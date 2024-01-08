@@ -22,6 +22,10 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
 public class InicioController implements Initializable {
 
@@ -35,6 +39,12 @@ public class InicioController implements Initializable {
     public TableColumn<Charge, String> concepto;
     public TableColumn<Charge, Integer> unidades;
     String nombre = null;
+    @FXML
+    private Pane compIngGas_pane;
+    @FXML
+    private Pane gastos_pane;
+    @FXML
+    private Button buton_borrar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -78,7 +88,26 @@ public class InicioController implements Initializable {
         } catch (AcountDAOException | IOException e) {
             e.printStackTrace();
         }
+        
+        //Activar o desactivar el boton de borrar si hay algún gasto seleccionado o no
+        buton_borrar.setDisable(true);
 
+        // Agregar un listener a la selección de la TableView
+        mov_tableview.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Habilitar el botón de borrar si hay algo seleccionado
+                buton_borrar.setDisable(false);
+            } else {
+                // Desactivar el botón de borrar si no hay nada seleccionado
+                buton_borrar.setDisable(true);
+            }
+        });
+
+    }
+
+    @FXML
+    private void eliminarGasto(ActionEvent event) {
+        
     }
 }
 

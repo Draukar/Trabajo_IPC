@@ -111,7 +111,6 @@ public class CategoriaController implements Initializable {
                 cerrar();
                 alert.showAndWait();
             }
-        }
     }
 
     @FXML
