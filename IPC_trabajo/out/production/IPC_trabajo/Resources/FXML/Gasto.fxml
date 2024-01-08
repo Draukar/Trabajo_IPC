@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="446.0" prefWidth="353.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
+<AnchorPane prefHeight="446.0" prefWidth="353.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GastoController">
     <children>
         <AnchorPane layoutX="-2.0" prefHeight="52.0" prefWidth="353.0" styleClass="titulo" AnchorPane.rightAnchor="0.0">
             <children>
