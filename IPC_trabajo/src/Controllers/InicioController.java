@@ -45,6 +45,8 @@ public class InicioController implements Initializable {
     private Pane gastos_pane;
     @FXML
     private Button buton_borrar;
+    
+    private ObservableList<Charge> listaDeGastos = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -106,7 +108,20 @@ public class InicioController implements Initializable {
     }
 
     @FXML
-    private void eliminarGasto(ActionEvent event) {
+    private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {         // Obtener el Charge seleccionado
+        Charge selectedCharge = (Charge) mov_tableview.getSelectionModel().getSelectedItem();
+
+        // Verificar si hay algo seleccionado
+        if (selectedCharge != null) {
+            // Eliminar el Charge de la base de datos
+            Acount.getInstance().removeCharge(selectedCharge);
+
+            // Eliminar el Charge de la TableView
+            listaDeGastos.remove(selectedCharge);
+
+            // Desactivar el botón de borrar después de eliminar
+            buton_borrar.setDisable(true);
+        }
         
     }
 }

@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -33,7 +34,8 @@ public class HistorialController implements Initializable {
     public Button boton_exportar;
     @FXML
     private Button boton_borrar;
-
+    
+    private ObservableList<Charge> listaDeGastos = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,11 +82,26 @@ public class HistorialController implements Initializable {
                 boton_borrar.setDisable(true);
             }
         });
+        
+        
 
     }
 
     @FXML
-    private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
+    private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException{
+         // Obtener el Charge seleccionado
+        Charge selectedCharge = (Charge) mov_tableview.getSelectionModel().getSelectedItem();
 
+        // Verificar si hay algo seleccionado
+        if (selectedCharge != null) {
+            // Eliminar el Charge de la base de datos
+            Acount.getInstance().removeCharge(selectedCharge);
+
+            // Eliminar el Charge de la TableView
+            listaDeGastos.remove(selectedCharge);
+
+            // Desactivar el botón de borrar después de eliminar
+            boton_borrar.setDisable(true);
+        }
     }
 }
