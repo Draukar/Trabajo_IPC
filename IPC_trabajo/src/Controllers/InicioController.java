@@ -109,22 +109,25 @@ public class InicioController implements Initializable {
 
     @FXML
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException {
-        Charge selectedCharge = (Charge) mov_tableview.getSelectionModel().getSelectedItem();
+         // Obtener el Charge seleccionado
+        int selectedIndex = mov_tableview.getSelectionModel().getSelectedIndex();
 
         // Verificar si hay algo seleccionado
-        if (selectedCharge != null) {
+        if (selectedIndex >= 0) {
+            
+            Charge selectedCharge = listaDeGastos.get(selectedIndex);
+            
             // Eliminar el Charge de la base de datos
             Acount.getInstance().removeCharge(selectedCharge);
 
             // Eliminar el Charge de la TableView
             listaDeGastos.remove(selectedCharge);
 
-            //Actualizar la TableView
-            mov_tableview.refresh();
-            
             // Desactivar el botón de borrar después de eliminar
             buton_borrar.setDisable(true);
             
+            //Actualizar la TableView
+            mov_tableview.refresh();
         }
         
     }
