@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="673.0" stylesheets="@../Style/Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HistorialController">
    <children>
       <Text layoutX="276.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="encabezado" text="Historial" />
-      <Button fx:id="boton_exportar" layoutX="487.0" layoutY="32.0" mnemonicParsing="false" styleClass="gastos_boton_limpiar" text="Exportar a PDF" />
+      <Button fx:id="boton_exportar" layoutX="487.0" layoutY="32.0" mnemonicParsing="false" onAction="#exportarPDF" styleClass="gastos_boton_limpiar" text="Exportar a PDF" />
       <TableView fx:id="mov_tableview" layoutX="25.0" layoutY="75.0" prefHeight="340.0" prefWidth="610.0">
          <columns>
             <TableColumn prefWidth="34.4000244140625" />

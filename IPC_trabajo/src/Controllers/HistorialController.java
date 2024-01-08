@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -39,7 +40,9 @@ public class HistorialController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //boton_exportar.setOnAction(actionEvent -> exportarAPdf());
+        
+        mov_tableview.setItems(listaDeGastos);
+                
         categoria.setCellFactory(column -> {
             return new TableCell<Charge, Category>() {
                 @Override
@@ -90,10 +93,13 @@ public class HistorialController implements Initializable {
     @FXML
     private void eliminarGasto(ActionEvent event) throws AcountDAOException, IOException{
          // Obtener el Charge seleccionado
-        Charge selectedCharge = (Charge) mov_tableview.getSelectionModel().getSelectedItem();
+        int selectedIndex = mov_tableview.getSelectionModel().getSelectedIndex();
 
         // Verificar si hay algo seleccionado
-        if (selectedCharge != null) {
+        if (selectedIndex >= 0) {
+            
+            Charge selectedCharge = listaDeGastos.get(selectedIndex);
+            
             // Eliminar el Charge de la base de datos
             Acount.getInstance().removeCharge(selectedCharge);
 
@@ -102,6 +108,45 @@ public class HistorialController implements Initializable {
 
             // Desactivar el botón de borrar después de eliminar
             boton_borrar.setDisable(true);
+            
+            //Actualizar la TableView
+            mov_tableview.refresh();
         }
+    }
+
+    @FXML
+    private void exportarPDF(ActionEvent event) {
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        
+        if(printerJob != null && printerJob.showPrintDialog(boton_exportar.getScene().getWindow())){
+            Node imprimir = contenidoPDF();
+            if(printerJob.printPage(imprimir)) printerJob.endJob();
+        }
+    }
+    
+    private Node contenidoPDF(){
+       // Crear una tabla temporal para copiar el contenido de la TableView
+        TableView<Charge> tablaTemporal = new TableView<>();
+        TableColumn<Charge, Category> columnaCategoria = new TableColumn<>("Categoría");
+        TableColumn<Charge, LocalDate> columnaFecha = new TableColumn<>("Fecha");
+        TableColumn<Charge, Double> columnaCantidad = new TableColumn<>("Cantidad");
+        TableColumn<Charge, String> columnaConcepto = new TableColumn<>("Concepto");
+        TableColumn<Charge, Integer> columnaUnidades = new TableColumn<>("Unidades");
+
+        // Asignar las propiedades de las entidades a las columnas
+        columnaCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        columnaCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+        columnaUnidades.setCellValueFactory(new PropertyValueFactory<>("unidades"));
+
+        // Agregar las columnas a la tabla
+        tablaTemporal.getColumns().addAll(columnaCategoria, columnaFecha, columnaCantidad, columnaConcepto, columnaUnidades);
+
+        // Copiar los datos de la TableView original a la tabla temporal
+        tablaTemporal.setItems(mov_tableview.getItems());
+
+
+        return tablaTemporal;
     }
 }
